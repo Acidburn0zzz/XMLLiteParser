@@ -1,7 +1,15 @@
 /**
- * Created by MrMan on 12/09/2016.
+ * XML LITE Parser - WTFPL license
  */
 public interface State {
-    State transition(char lol);
-    boolean validate();
+    /**
+     * @param c input character, event to be processed for the current state
+     * @return a new state according to the input event
+     */
+    State transition(char c);
+
+    /**
+     * @return true if the state is a final state for the Finite-state machine
+     */
+    boolean isFinal();
 }
