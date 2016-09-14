@@ -6,8 +6,10 @@ public class EndClosingTag implements State {
     public State transition(char c) {
         if(c == '<')
             return new NewTag();
-        else
+        else if(c != '<' && c != '>' && c != '/')
             return new TextContent();
+        else
+            return new Error();
     }
 
     @Override

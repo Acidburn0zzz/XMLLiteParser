@@ -1,13 +1,15 @@
 /**
  * Created by MrMan on 14/09/2016.
  */
-public class ClosingTag implements State {
+public class ClosingTagName implements State {
     @Override
     public State transition(char c) {
         if(c == '>')
             return new EndClosingTag();
-        else
+        else if(c != '<' && c != '>' && c != '/')
             return this; //Closing tag name goes on
+        else
+            return new Error();
     }
 
     @Override
