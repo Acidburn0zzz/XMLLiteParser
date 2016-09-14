@@ -4,7 +4,7 @@
 public class NewClosingTag implements State {
     @Override
     public State transition(char c) {
-
+        return null;
     }
 
     @Override

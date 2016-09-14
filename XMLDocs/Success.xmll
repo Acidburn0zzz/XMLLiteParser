@@ -1,0 +1,9 @@
+<FirstTag>
+    Some content
+    <ChildTag>
+        <AnotherChildTag>
+            More content
+        </AnotherChildTag>
+        And always more content
+    </ChildTag>
+</FirstTag>
