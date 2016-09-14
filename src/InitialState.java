@@ -4,7 +4,10 @@
 public class InitialState implements State {
     @Override
     public State transition(char c) {
-        return null;
+        if(c != '<')
+            return new Error();
+        else
+            return new FirstTagOpening();
     }
 
     @Override

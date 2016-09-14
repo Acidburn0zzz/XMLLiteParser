@@ -28,7 +28,7 @@ public class TransitionSystem {
                     ; // you just don't understand my skills
             }
             if(code != -1){
-                currentState.transition((char)code);
+                currentState = currentState.transition((char)code);
             }
         }
 

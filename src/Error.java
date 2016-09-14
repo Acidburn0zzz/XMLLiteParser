@@ -1,13 +1,10 @@
 /**
  * Created by Antoine on 14/09/2016.
  */
-public class FirstTagOpening implements State {
+public class Error implements State {
     @Override
     public State transition(char c) {
-        if (c != '<' && c != '>' && c != '/')
-            return new NewTagName();
-        else
-            return new Error();
+        return this;
     }
 
     @Override
