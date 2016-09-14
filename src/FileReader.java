@@ -36,4 +36,12 @@ public class FileReader {
         else
             throw new Exception("Pas de buffer à lire");
     }
+
+    public void close(){
+        try {
+            inputStream.close();
+        } catch (IOException e) {
+            ; // #GoodPractice
+        }
+    }
 }
