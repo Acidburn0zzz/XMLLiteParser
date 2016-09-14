@@ -4,7 +4,12 @@
 public class NewTag implements State {
     @Override
     public State transition(char c) {
-        return null;
+        if (c == '/')
+            return new NewClosingTag();
+        else if ((c == '<') || (c == '>'))
+            return new Error();
+        else
+            return new NewTagName();
     }
 
     @Override

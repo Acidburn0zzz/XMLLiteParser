@@ -4,7 +4,12 @@
 public class TextContent implements State {
     @Override
     public State transition(char c) {
-        return null;
+        if (c == '<')
+            return new NewTag();
+        else if ((c == '/') || (c == '>'))
+            return new Error();
+        else
+            return new TextContent();
     }
 
     @Override
