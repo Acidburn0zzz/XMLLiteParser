@@ -4,11 +4,14 @@
 public class EndClosingTag implements State {
     @Override
     public State transition(char c) {
-        return null;
+        if(c == '<')
+            return new NewTag();
+        else
+            return new TextContent();
     }
 
     @Override
     public boolean isFinal() {
-        return false;
+        return true;
     }
 }

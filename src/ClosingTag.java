@@ -4,7 +4,10 @@
 public class ClosingTag implements State {
     @Override
     public State transition(char c) {
-        return null;
+        if(c == '>')
+            return new EndClosingTag();
+        else
+            return this; //Closing tag name goes on
     }
 
     @Override
