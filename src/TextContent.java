@@ -9,7 +9,7 @@ public class TextContent implements State {
         else if ((c == '/') || (c == '>'))
             return new Error();
         else
-            return new TextContent();
+            return this;
     }
 
     @Override
