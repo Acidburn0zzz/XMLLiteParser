@@ -6,10 +6,10 @@ public class TextContent implements State {
     public State transition(char c) {
         if (c == '<')
             return new NewTag();
-        else if ((c == '/') || (c == '>'))
-            return new Error();
-        else
+        else if ((c != '/') && (c != '>'))
             return this;
+        else
+            return new Error();
     }
 
     @Override
