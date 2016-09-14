@@ -5,9 +5,9 @@ public class NewTagName implements State {
     @Override
     public State transition(char c) {
         if (c == '>')
-            return new NewTagName();
-        else if (c != '<' && c != '>' && c != '/')
             return new EndTagName();
+        else if (c != '<' && c != '>' && c != '/')
+            return new NewTagName();
         else
             return new Error();
 
