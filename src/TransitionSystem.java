@@ -15,10 +15,11 @@ public class TransitionSystem {
     /**
      * @param filePath
      */
-    public TransitionSystem(String filePath) {
+    public TransitionSystem(String filePath) throws IOException {
         this.filePath = filePath;
         encoding = Charset.defaultCharset();
         file = new File(filePath);
+        handleFile();
     }
 
     /**
