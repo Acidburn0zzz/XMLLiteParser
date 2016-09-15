@@ -32,6 +32,8 @@ public class TransitionSystem {
             }
         }
 
+        System.out.println(currentState.isFinal());
+
     }
 
     public State getEvent(){
