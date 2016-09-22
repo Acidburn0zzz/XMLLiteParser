@@ -4,11 +4,13 @@
 public class NewTagName implements State {
     @Override
     public State transition(char c) {
-        if (c == '>')
+        if (c == '>') {
+            XMLLiteParser.getInstance().createNode();
             return new EndTagName();
-        else if (c != '<' && c != '>' && c != '/')
-            return new NewTagName();
-        else
+        }else if (c != '<' && c != '/') {
+            XMLLiteParser.getInstance().fillBuffer(c);
+            return this;
+        }else
             return new Error();
 
     }

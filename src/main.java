@@ -14,7 +14,7 @@ public class main {
             e.printStackTrace();
         }
         long startTime = System.currentTimeMillis();
-        long elapsedTime= 0L;
+        long elapsedTime;
         ts.start();
         elapsedTime = (new Date()).getTime() - startTime;
         System.out.println("Document validated in " + (elapsedTime) + " ms");

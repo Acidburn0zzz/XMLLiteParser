@@ -2,22 +2,28 @@
  * Created by MrMan on 12/09/2016.
  */
 public class XMLLiteParser {
+    private static XMLLiteParser instance;
     private String buffer;
     private XMLLiteNode lastNode;
     private boolean nodeBeforeContent; //Because there can be content only before new nodes
     private XMLLiteNode rootNode;
 
-    public XMLLiteParser() {
+    private XMLLiteParser() {
         buffer = null;
         lastNode = null;
         nodeBeforeContent = false;
     }
 
-    private void fillBuffer(char c){
+    public static XMLLiteParser getInstance(){
+        if(instance==null)
+            instance = new XMLLiteParser();
+        return instance;
+    }
+    public void fillBuffer(char c){
         buffer += c;
     }
 
-    private void createNode(){
+    public void createNode(){
         assert (!buffer.isEmpty());
         XMLLiteNode node;
 
@@ -34,7 +40,7 @@ public class XMLLiteParser {
         nodeBeforeContent = false;
     }
 
-    private void closeNode(){
+    public void closeNode(){
         assert(buffer == lastNode.getName());
 
         lastNode = lastNode.getParent();
@@ -42,7 +48,7 @@ public class XMLLiteParser {
         nodeBeforeContent = true;
     }
 
-    private void fillNodeContent(){
+    public void fillNodeContent(){
         assert(!(buffer.isEmpty() && nodeBeforeContent));
 
         lastNode.fillContent(buffer);

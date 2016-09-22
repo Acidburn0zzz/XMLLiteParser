@@ -4,11 +4,13 @@
 public class ClosingTagName implements State {
     @Override
     public State transition(char c) {
-        if(c == '>')
+        if(c == '>') {
+            XMLLiteParser.getInstance().closeNode();
             return new EndClosingTag();
-        else if(c != '<' && c != '>' && c != '/')
+        }else if(c != '<' && c != '>' && c != '/') {
+            XMLLiteParser.getInstance().fillBuffer(c);
             return this; //Closing tag name goes on
-        else
+        }else
             return new Error();
     }
 
