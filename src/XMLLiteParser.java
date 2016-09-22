@@ -15,7 +15,7 @@ public class XMLLiteParser {
     }
 
     public static XMLLiteParser getInstance(){
-        if(instance==null)
+        if(instance == null)
             instance = new XMLLiteParser();
         return instance;
     }
@@ -30,7 +30,7 @@ public class XMLLiteParser {
         if(lastNode != null) {
             node = new XMLLiteNode(buffer, lastNode);
             rootNode = node;
-            lastNode.addChildren(node);
+            // lastNode.addChildren(node); À faire par le constructeur à deux paramètres de la classe node.
         }else{
             node = new XMLLiteNode(buffer);
         }

@@ -21,6 +21,7 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
     public XMLLiteNode(String name, XMLLiteNode parent) {
         this.name = name;
         this.parent = parent;
+        parent.addChildren(this);
     }
 
     public void fillContent(String content){

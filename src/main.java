@@ -9,7 +9,7 @@ public class main {
     public static void main(String[] args) {
         TransitionSystem ts = new TransitionSystem();
         try {
-            ts.openXMLFile("C:/Users/MrMan/Desktop/lol.xmll");
+            ts.openXMLFile("XMLDocs\\Ok.xmll");
         } catch (IOException e) {
             e.printStackTrace();
         }
