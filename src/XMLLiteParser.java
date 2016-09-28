@@ -43,7 +43,7 @@ public class XMLLiteParser {
     public void closeNode(){
         assert(buffer == lastNode.getName());
 
-        lastNode = lastNode.getParent();
+        lastNode = (XMLLiteNode)lastNode.getParent();
         buffer = null;
         nodeBeforeContent = true;
     }

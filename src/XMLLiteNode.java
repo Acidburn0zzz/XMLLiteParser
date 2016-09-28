@@ -1,8 +1,5 @@
 import javax.swing.tree.TreeNode;
-import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * Created by MrMan on 12/09/2016.
@@ -48,14 +45,14 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
         return children.size();
     }
 
-    public XMLLiteNode getParent() {
+    public TreeNode getParent() {
         return parent;
     }
 
     //TreeNode Interface
     @Override
     public int getIndex(TreeNode node) {
-        return parent.children.indexOf(this);
+        return children.indexOf(this);
     }
 
     @Override
@@ -70,7 +67,7 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
 
     @Override
     public Enumeration children() {
-        return (Enumeration) this;
+        return Collections.enumeration(children);
     }
 
     //Iterable Interface
