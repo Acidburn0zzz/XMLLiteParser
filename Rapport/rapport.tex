@@ -8,19 +8,6 @@
 \usepackage{listings}
 \usepackage{color}
 
-\title{%
-    \begin{minipage}\linewidth
-        \centering \bfseries
-        Rapport du projet XMLLiteParser
-        \vskip3pt
-        \large Modélisation
-    \end{minipage}
-}
-
-%\title{}
-\author{Mathis Deloge, Antoine Petot, Ange Picard}
-\date{}
-
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{0.58,0,0.82}
@@ -36,6 +23,21 @@
   stringstyle=\color{mymauve},     % string literal style
 }
 
+
+\title{%
+    \begin{minipage}\linewidth
+        \centering \bfseries
+        Rapport du projet XMLLiteParser
+        \vskip3pt
+        \large Modélisation
+    \end{minipage}
+	
+}
+
+%\title{}
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+\date{}
+
 \begin{document}
 
 % définition des style de puces
@@ -44,6 +46,7 @@
 \renewcommand{\labelitemiii}{$-$}
 \renewcommand{\labelitemiv}{$\triangleright$}
 
+
 \maketitle
 \section{Descriptif du sujet}
 \section{Journal de bord}
@@ -51,7 +54,15 @@
 \subsection{Séance 2}
 Modélisation de l'automate fini. Implémentation des différents états.
 \section{Choix du modèle mathématique}
+\section{Prolongements possibles}
+\subsection{Etudiez et justifiez les propriétés de la structure mathématique utilisée.}
+\subsection{Modifiez votre validateur afin qu’il permette le débugage du fichier XML. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
+\subsection{Modifiez votre validateur afin qu’il s’accorde à un schéma prédéfini. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
+\subsection{Modifiez votre validateur afin qu’il prenne en compte un schéma accompagnant éventuellement un fichier XML-Lite.}
+\subsection{Proposez un schéma permettant de stocker la base de données d’un générateur de QCM, chaque question ayant de 1 à 5 réponses, correctes ou non.}
+\subsection{Rajoutez à votre programme un interpréteur (pour le schéma du prolongement précédent).}
 \section{Conclusion}
+
 \section{Comment ajouter du code ?}
 \subsection{Comme ça}
 \lstinputlisting[language=java, firstline=1, lastline=45]{../src/main.java}
@@ -67,4 +78,5 @@ class HelloWorldApp {
     }
 }
 \end{lstlisting}
+
 \end{document}
