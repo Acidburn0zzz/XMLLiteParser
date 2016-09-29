@@ -5,14 +5,8 @@
 \usepackage[francais]{babel}
 \usepackage{lmodern}
 \usepackage{graphicx}
-
-\begin{document}
-
-% définition des style de puces
-\renewcommand{\labelitemi}{$\bullet$}
-\renewcommand{\labelitemii}{$\circ$}
-\renewcommand{\labelitemiii}{$-$}
-\renewcommand{\labelitemiv}{$\triangleright$}
+\usepackage{listings}
+\usepackage{color}
 
 \title{%
     \begin{minipage}\linewidth
@@ -26,6 +20,30 @@
 %\title{}
 \author{Mathis Deloge, Antoine Petot, Ange Picard}
 \date{}
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+}
+
+\begin{document}
+
+% définition des style de puces
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$-$}
+\renewcommand{\labelitemiv}{$\triangleright$}
+
 \maketitle
 \section{Descriptif du sujet}
 \section{Journal de bord}
@@ -34,5 +52,19 @@
 Modélisation de l'automate fini. Implémentation des différents états.
 \section{Choix du modèle mathématique}
 \section{Conclusion}
+\section{Comment ajouter du code ?}
+\subsection{Comme ça}
+\lstinputlisting[language=java, firstline=1, lastline=45]{../src/main.java}
 
+\subsection{Ou comme ça}
+\begin{lstlisting}[language=java]
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // Display the string.
+        for (int i = 0; i < 100; ++i) {
+            System.out.println(i);
+        }
+    }
+}
+\end{lstlisting}
 \end{document}
