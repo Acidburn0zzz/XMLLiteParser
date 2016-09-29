@@ -10,12 +10,15 @@ public class TreeView extends JFrame {
     private JTree tree;
 
     public TreeView() {
+
         setContentPane(contentPane);
         setTitle("Un programme qu'il est bien pour visualiser les fichiers XMLLite");
         setSize(800,600);
         getRootPane().setDefaultButton(buttonOK);
         DefaultTreeModel tm = new DefaultTreeModel((TreeNode)XMLLiteParser.getInstance().getRootNode());
         tree.setModel(tm);
+
+
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -53,12 +56,5 @@ public class TreeView extends JFrame {
     private void onCancel() {
 // add your code here if necessary
         dispose();
-    }
-
-    public static void main(String[] args) {
-        TreeView dialog = new TreeView();
-        dialog.pack();
-        dialog.setVisible(true);
-        System.exit(0);
     }
 }

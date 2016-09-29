@@ -9,7 +9,7 @@ public class main {
     public static void main(String[] args) {
         TransitionSystem ts = new TransitionSystem();
         try {
-            ts.openXMLFile("XMLDocs\\ok.xmll");
+            ts.openXMLFile("XMLDocs\\Success.xmll");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -18,7 +18,6 @@ public class main {
         ts.start();
         elapsedTime = (new Date()).getTime() - startTime;
         System.out.println("Document validated in " + (elapsedTime) + " ms");
-        System.out.println(XMLLiteParser.getInstance().getRootNode().getName());
         TreeView tv = new TreeView();
         tv.setVisible(true);
     }

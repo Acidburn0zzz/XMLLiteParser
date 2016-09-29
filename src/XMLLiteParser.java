@@ -29,13 +29,11 @@ public class XMLLiteParser {
 
         if(lastNode != null) {
             node = new XMLLiteNode(buffer, lastNode);
-            lastNode = node;
             // lastNode.addChildren(node); À faire par le constructeur à deux paramètres de la classe node.
         }else{
             node = new XMLLiteNode(buffer);
             rootNode = node;
         }
-
         lastNode = node;
         buffer ="";
         nodeBeforeContent = false;

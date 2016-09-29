@@ -13,11 +13,13 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
     public XMLLiteNode(String name) {
         this.name = name;
         this.parent = null;
+        children = new ArrayList<>();
     }
 
     public XMLLiteNode(String name, XMLLiteNode parent) {
         this.name = name;
         this.parent = parent;
+        children = new ArrayList<>();
         parent.addChildren(this);
     }
 
@@ -26,8 +28,6 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
     }
 
     public void addChildren(XMLLiteNode node){
-        if(children == null)
-            children = new ArrayList<>();
         children.add(node);
     }
 
@@ -37,7 +37,7 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
 
     @Override
     public TreeNode getChildAt(int childIndex) {
-        return children.get(childIndex);
+        return (TreeNode)children.get(childIndex);
     }
 
     @Override
@@ -46,7 +46,7 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
     }
 
     public TreeNode getParent() {
-        return parent;
+        return (TreeNode)parent;
     }
 
     //TreeNode Interface
@@ -62,7 +62,15 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
 
     @Override
     public boolean isLeaf() {
+        if(children.isEmpty()) {
+            System.out.println("true");
+            System.out.println(parent.toString());
+        }
+        else
+            System.out.println("false");
+
         return children.isEmpty();
+
     }
 
     @Override
