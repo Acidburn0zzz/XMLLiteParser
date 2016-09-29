@@ -7,6 +7,10 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \usepackage{color}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
@@ -109,6 +113,57 @@ Puis, nous avons réfléchis à la structure mathématique du pasreur, nous sommes v
 \paragraph{}
 Il a également fallu implémenter un buffer afin de stocker caractère par caractère les informations provenant des états du validateur.
 \section{Choix du modèle mathématique}
+
+\subsection{descprition a faire}
+Pour nous permettre de parcourir rapidement un fichier XML-Lite, nous avons opté pour le développement d’un automate fini.
+\paragraph{}
+Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, il y a très peu d’états différents lors de la lecture d’un fichier. Les transitions entre états se font uniquement grâce à la différenciation des caractères ‘<’, ‘>’, ‘/’ et le reste.
+\paragraph{}
+Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide (exécution en 13ms pour un fichier XML-Lite de près de 700Mo).
+
+
+\subsection{Représentation de l'automate}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[initial,state] (A)                    {$I$};
+  \node[state]         (B) [below of=A] 			{$FTO$};
+  \node[state]         (C) [right of=B] 			{$NTN$};
+  \node[state]         (D) [right of=C] 			{$ETN$};
+  \node[state]         (E) [above right of=D]	{$TC$};
+	\node[state]         (F) [below right of=D]	{$NT$};
+	\node[state]         (G) [right of=F]				{$NCT$};
+	\node[state]         (H) [right of=G]				{$CTN$};
+	\node[state]         (I) [right of=H]				{$ECT$};
+	\node[state]         (J) [below of=I]				{$F$};
+
+  \path (A) edge              node {<} (B)
+        (B) edge							node {char} (C)
+        (C) edge [loop above] node {char} (C)
+            edge 						  node {>} (D)
+        (D) edge 							node {char} (E)
+            edge              node {<} (F)
+        (E) edge [loop above] node {char} (E)
+						edge 						  node {<} (F)
+				(F) edge 							node {/} (G)
+						edge [bend left]	node {char} (C)
+				(G) edge							node {char} (H)
+				(H) edge [loop above] node {char} (H)
+						edge							node {>} (I)
+				(I) edge [bend left] 	node {<} (F)
+						edge 							node {EOF} (J)
+				
+				
+				
+				
+				
+				;
+\end{tikzpicture}
+
+
+
+
 \section{Prolongements possibles}
 \subsection{Étudiez et justifiez les propriétés de la structure mathématique utilisée.}
 \subsection{Modifiez votre validateur afin qu’il permette le débogage du fichier XML. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
