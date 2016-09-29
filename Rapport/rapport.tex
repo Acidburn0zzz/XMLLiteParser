@@ -10,7 +10,7 @@
 
 \definecolor{mygreen}{rgb}{0,0.6,0}
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
-\definecolor{mymauve}{rgb}{0.58,0,0.82}
+\definecolor{mymauve}{rgb}{1,0,0}
 
 \lstset{ %
   backgroundcolor=\color{white},   % choose the background color
@@ -21,6 +21,9 @@
   escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
   keywordstyle=\color{blue},       % keyword style
   stringstyle=\color{mymauve},     % string literal style
+	numbers=left,
+	frame=leftline,
+	xleftmargin=42pt
 }
 
 \title{%
@@ -69,8 +72,42 @@ Le parseur / validateur doit être capable de lire n'importe quel fichier XML-Lit
 Grâce aux fichiers schéma, le parseur / validateur connais avec plus de finesse les balises filles autorisées ou non pour chaque balises. C'est une sorte de modèle qui permettra la validation du fichier XML-Lite.
 \section{Journal de bord}
 \subsection{Séance 1}
+Lors de la première séance, nous avons tout d'abord effectué le choix de sujet. Le parseur / validateur XMLLite nous a intéressé étant donné le grand nombre de programmes fonctionnant avec XML pour la persistance et la souplesse de ce format de base de données, nous étions intéressé de découvrir les notions de bases du XML.
+\paragraph{}
+Par ailleurs, durant cette séance, nous avons trouvé des informations sur les validateurs de documents et avons pensé à implémenter un automate fini pour modéliser notre validateur. Le design objet "state pattern" semblait particulièrement adapté.
+
 \subsection{Séance 2}
-Modélisation de l'automate fini. Implémentation des différents états.
+Lors de la deuxième séance, nous avons modélisé l'automate fini schématiquement, puis, nous l'avons implémenté. Il est utilisé pour valider le document. Nous avons également codé tous les différents états.
+\paragraph{}
+\textbf{Exemple d'un état du validateur}
+\begin{lstlisting}[language=java]
+public class NewTag implements State {
+    @Override
+    public State transition(char c) {
+        if (c == '/')
+            return new NewClosingTag();
+        else if ((c != '<') && (c != '>')) {
+            XMLLiteParser.getInstance().fillBuffer(c);
+            return new NewTagName();
+        } else
+            return new Error();
+    }
+
+    @Override
+    public boolean isFinal() {
+        return false;
+    }
+}
+\end{lstlisting}
+
+\paragraph{}
+Puis, nous avons réfléchis à la structure mathématique du pasreur, nous sommes vite arrivé à celle d'un arbre. Cette structure à l'avantage d'être facile à designer en objet. Nous avons donc implémenté deux classes :
+\begin{itemize}
+	\item XMLLiteNode : Pour représenter une feuille ou un nœud de l'arbre.
+	\item XMLLiteParser : Pour construire l'arbre.
+\end{itemize}
+\paragraph{}
+Il a également fallu implémenter un buffer afin de stocker caractère par caractère les informations provenant des états du validateur.
 \section{Choix du modèle mathématique}
 \section{Prolongements possibles}
 \subsection{Étudiez et justifiez les propriétés de la structure mathématique utilisée.}
