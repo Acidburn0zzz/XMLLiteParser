@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage[top=1cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
-\usepackage[latin1]{inputenc}
+\usepackage[ansinew]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
 \usepackage{lmodern}
@@ -23,24 +23,24 @@
   stringstyle=\color{mymauve},     % string literal style
 }
 
-
 \title{%
     \begin{minipage}\linewidth
         \centering \bfseries
         Rapport du projet XMLLiteParser
         \vskip3pt
-        \large ModÃ©lisation
+        \large Modélisation
     \end{minipage}
-	
 }
 
-%\title{}
+
+
 \author{Mathis Deloge, Antoine Petot, Ange Picard}
 \date{}
 
+
 \begin{document}
 
-% dÃ©finition des style de puces
+% définition des style de puces
 \renewcommand{\labelitemi}{$\bullet$}
 \renewcommand{\labelitemii}{$\circ$}
 \renewcommand{\labelitemiii}{$-$}
@@ -48,26 +48,27 @@
 
 
 \maketitle
+
 \section{Descriptif du sujet}
 \section{Journal de bord}
-\subsection{SÃ©ance 1}
-\subsection{SÃ©ance 2}
-ModÃ©lisation de l'automate fini. ImplÃ©mentation des diffÃ©rents Ã©tats.
-\section{Choix du modÃ¨le mathÃ©matique}
+\subsection{Séance 1}
+\subsection{Séance 2}
+Modélisation de l'automate fini. Implémentation des différents états.
+\section{Choix du modèle mathématique}
 \section{Prolongements possibles}
-\subsection{Etudiez et justifiez les propriÃ©tÃ©s de la structure mathÃ©matique utilisÃ©e.}
-\subsection{Modifiez votre validateur afin quâ€™il permette le dÃ©bugage du fichier XML. Quel impact cette modification a eu sur la structure mathÃ©matique utilisÃ©e ?}
-\subsection{Modifiez votre validateur afin quâ€™il sâ€™accorde Ã  un schÃ©ma prÃ©dÃ©fini. Quel impact cette modification a eu sur la structure mathÃ©matique utilisÃ©e ?}
-\subsection{Modifiez votre validateur afin quâ€™il prenne en compte un schÃ©ma accompagnant Ã©ventuellement un fichier XML-Lite.}
-\subsection{Proposez un schÃ©ma permettant de stocker la base de donnÃ©es dâ€™un gÃ©nÃ©rateur de QCM, chaque question ayant de 1 Ã  5 rÃ©ponses, correctes ou non.}
-\subsection{Rajoutez Ã  votre programme un interprÃ©teur (pour le schÃ©ma du prolongement prÃ©cÃ©dent).}
+\subsection{Étudiez et justifiez les propriétés de la structure mathématique utilisée.}
+\subsection{Modifiez votre validateur afin qu’il permette le débogage du fichier XML. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
+\subsection{Modifiez votre validateur afin qu’il s’accorde à un schéma prédéfini. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
+\subsection{Modifiez votre validateur afin qu’il prenne en compte un schéma accompagnant éventuellement un fichier XML-Lite.}
+\subsection{Proposez un schéma permettant de stocker la base de données d’un générateur de QCM, chaque question ayant de 1 à 5 réponses, correctes ou non.}
+\subsection{Rajoutez à votre programme un interpréteur (pour le schéma du prolongement précédent).}
 \section{Conclusion}
 
 \section{Comment ajouter du code ?}
-\subsection{Comme Ã§a}
+\subsection{Comme ça}
 \lstinputlisting[language=java, firstline=1, lastline=45]{../src/main.java}
 
-\subsection{Ou comme Ã§a}
+\subsection{Ou comme ça}
 \begin{lstlisting}[language=java]
 class HelloWorldApp {
     public static void main(String[] args) {
