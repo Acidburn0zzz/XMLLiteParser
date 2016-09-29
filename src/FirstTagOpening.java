@@ -4,9 +4,10 @@
 public class FirstTagOpening implements State {
     @Override
     public State transition(char c) {
-        if (c != '<' && c != '>' && c != '/')
+        if (c != '<' && c != '>' && c != '/') {
+            XMLLiteParser.getInstance().fillBuffer(c);
             return new NewTagName();
-        else
+        } else
             return new Error();
     }
 

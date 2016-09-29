@@ -4,9 +4,12 @@
 public class EndClosingTag implements State {
     @Override
     public State transition(char c) {
-        if(c == '<')
+        if (c == '<')
             return new NewTag();
-        else
+        else if (c != '<' && c != '>' && c != '/') {
+            XMLLiteParser.getInstance().fillBuffer(c);
+        return new TextContent();
+        } else
             return new Error();
     }
 

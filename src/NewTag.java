@@ -6,9 +6,10 @@ public class NewTag implements State {
     public State transition(char c) {
         if (c == '/')
             return new NewClosingTag();
-        else if ((c != '<') && (c != '>'))
+        else if ((c != '<') && (c != '>')) {
+            XMLLiteParser.getInstance().fillBuffer(c);
             return new NewTagName();
-        else
+        } else
             return new Error();
     }
 
