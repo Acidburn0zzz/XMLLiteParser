@@ -62,7 +62,7 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
 
     @Override
     public boolean isLeaf() {
-        return children.size()!=0;
+        return children.isEmpty();
     }
 
     @Override
@@ -92,5 +92,10 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
                 throw new NoSuchElementException();
             }
         };
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

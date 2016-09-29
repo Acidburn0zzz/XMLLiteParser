@@ -9,7 +9,7 @@ public class XMLLiteParser {
     private XMLLiteNode rootNode;
 
     private XMLLiteParser() {
-        buffer = null;
+        buffer = "";
         lastNode = null;
         nodeBeforeContent = false;
     }
@@ -29,14 +29,15 @@ public class XMLLiteParser {
 
         if(lastNode != null) {
             node = new XMLLiteNode(buffer, lastNode);
-            rootNode = node;
+            lastNode = node;
             // lastNode.addChildren(node); À faire par le constructeur à deux paramètres de la classe node.
         }else{
             node = new XMLLiteNode(buffer);
+            rootNode = node;
         }
 
         lastNode = node;
-        buffer = null;
+        buffer ="";
         nodeBeforeContent = false;
     }
 
@@ -44,7 +45,7 @@ public class XMLLiteParser {
         assert(buffer == lastNode.getName());
 
         lastNode = (XMLLiteNode)lastNode.getParent();
-        buffer = null;
+        buffer = "";
         nodeBeforeContent = true;
     }
 
@@ -52,7 +53,7 @@ public class XMLLiteParser {
         assert(!(buffer.isEmpty() && nodeBeforeContent));
 
         lastNode.fillContent(buffer);
-        buffer = null;
+        buffer = "";
     }
 
     public XMLLiteNode getRootNode() {
