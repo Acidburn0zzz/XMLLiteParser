@@ -50,6 +50,23 @@
 \maketitle
 
 \section{Descriptif du sujet}
+Comme cité dans le sujet, un parseur / validateur XML-Lite est un programme capable de lire un fichier, d’indiquer s’il vérifie la norme XML-Lite et si oui, de l’analyser et de retenir sa structure ainsi que son contenu.
+Pour nous permettre de concevoir un programme réalisable, notre parseur / validateur opère sur un langage simplifié de XML, le XML-Lite conçu pour faciliter l'utilisation, les performances ainsi que les normes de conformité (XML 1.0).
+\subsection{Le XML-Lite}
+Pour être considéré comme du XML-Lite, les fichiers parsés / validés par notre programme doivent respecter certaines règles :
+\begin{itemize}
+	\item Une balise possède un nom.
+	\item Une balise doit être ouverte puis fermée.
+	\item Une balise peut contenir du texte.
+	\item Une balise peut contenir d'autre balises.
+	\item L'ordre des balises filles n'a pas d'importance et tout le texte contenu dans une balise est regroupé en un seul bloc.
+	\item Une balise fille doit être fermée avant la fermeture de la balise parent.
+	\item Une balise peut contenir une balise du même nom.
+	\item Un document doit commencer par l'ouverture d'une balise se fermant à la fin du document.
+\end{itemize}
+\subsection{Structure du document}
+Le parseur / validateur doit être capable de lire n'importe quel fichier XML-Lite mais doit aussi être en mesure d'attendre une certaine structure de document grâce à l'ajout d'un fichier .dtd appelé schéma.
+Grâce aux fichiers schéma, le parseur / validateur connais avec plus de finesse les balises filles autorisées ou non pour chaque balises. C'est une sorte de modèle qui permettra la validation du fichier XML-Lite.
 \section{Journal de bord}
 \subsection{Séance 1}
 \subsection{Séance 2}
