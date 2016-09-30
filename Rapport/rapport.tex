@@ -123,6 +123,7 @@ Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avéré
 
 
 \subsection{Représentation de l'automate finis}
+\subsubsection{Schéma}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
                     semithick]
   \tikzstyle{every state}=[fill=red,draw=none,text=white]
@@ -154,7 +155,7 @@ Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avéré
 				(I) edge [bend left] 	node {<} (F)
 						edge 							node {EOF} (J);
 \end{tikzpicture}
-
+\subsubsection{Description des états}
 \begin{description}
 	\item [I] Initial
 	\item [FTO] First Tag Opening
