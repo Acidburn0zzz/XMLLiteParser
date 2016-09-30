@@ -114,7 +114,7 @@ Puis, nous avons réfléchis à la structure mathématique du pasreur, nous sommes v
 Il a également fallu implémenter un buffer afin de stocker caractère par caractère les informations provenant des états du validateur.
 \section{Choix du modèle mathématique}
 
-\subsection{descprition a faire}
+\subsection{Le modèle mathématique}
 Pour nous permettre de parcourir rapidement un fichier XML-Lite, nous avons opté pour le développement d’un automate fini.
 \paragraph{}
 Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, il y a très peu d’états différents lors de la lecture d’un fichier. Les transitions entre états se font uniquement grâce à la différenciation des caractères ‘<’, ‘>’, ‘/’ et le reste.
@@ -122,7 +122,7 @@ Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, i
 Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide (exécution en 13ms pour un fichier XML-Lite de près de 700Mo).
 
 
-\subsection{Représentation de l'automate}
+\subsection{Représentation de l'automate finis}
 \begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
                     semithick]
   \tikzstyle{every state}=[fill=red,draw=none,text=white]
@@ -152,16 +152,21 @@ Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avéré
 				(H) edge [loop above] node {char} (H)
 						edge							node {>} (I)
 				(I) edge [bend left] 	node {<} (F)
-						edge 							node {EOF} (J)
-				
-				
-				
-				
-				
-				;
+						edge 							node {EOF} (J);
 \end{tikzpicture}
 
-
+\begin{description}
+	\item [I] Initial
+	\item [FTO] First Tag Opening
+	\item [NTN] New Tag Name
+	\item [ETN] End Tag Name
+	\item [TC] Text Content
+	\item [NT] New Tag
+	\item [NCT] New Closing Tag
+	\item [CTN] Colsing Tag Name
+	\item [ECT] End Closing Tag
+	\item [F] Final
+\end{description}
 
 
 \section{Prolongements possibles}
