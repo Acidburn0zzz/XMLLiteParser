@@ -1,13 +1,9 @@
-import javax.swing.tree.TreeNode;
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Iterator;
-import java.util.NoSuchElementException;
 
 /**
  * Created by MrMan on 12/09/2016.
  */
-public class XMLLiteNode implements TreeNode, Iterable<Integer> {
+public class XMLLiteNode {
     private String name;
     private String content;
     private XMLLiteNode parent;
@@ -34,66 +30,13 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
         children.add(node);
     }
 
-    public String getName() {
+    @Override
+    public String toString() {
         return name;
-    }
-
-    @Override
-    public TreeNode getChildAt(int childIndex) {
-        return children.get(childIndex);
-    }
-
-    @Override
-    public int getChildCount() {
-        return children.size();
     }
 
     public XMLLiteNode getParent() {
         return parent;
     }
 
-    //TreeNode Interface
-    @Override
-    public int getIndex(TreeNode node) {
-        return parent.children.indexOf(this);
-    }
-
-    @Override
-    public boolean getAllowsChildren() {
-        return true;
-    }
-
-    @Override
-    public boolean isLeaf() {
-        return children.size()!=0;
-    }
-
-    @Override
-    public Enumeration children() {
-        return (Enumeration) this;
-    }
-
-    //Iterable Interface
-
-    @Override
-    public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
-            private int cursor = 0;
-
-            @Override
-            public boolean hasNext() {
-                return children.size() > cursor;
-            }
-
-            @Override
-            public Integer next() {
-                if(this.hasNext()){
-                    int current = cursor;
-                    cursor++;
-                    return current;
-                }
-                throw new NoSuchElementException();
-            }
-        };
-    }
 }

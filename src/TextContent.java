@@ -3,7 +3,7 @@
  */
 public class TextContent implements State {
     @Override
-    public State transition(char c) {
+    public State transition(char c) throws NodeBeforeContentException {
         if (c == '<') {
             XMLLiteParser.getInstance().fillNodeContent();
             return new NewTag();

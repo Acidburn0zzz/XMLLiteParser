@@ -9,53 +9,69 @@ public class XMLLiteParser {
     private XMLLiteNode rootNode;
 
     private XMLLiteParser() {
-        buffer = null;
-        lastNode = null;
+        buffer = "";
         nodeBeforeContent = false;
     }
 
-    public static XMLLiteParser getInstance(){
-        if(instance == null)
+    public static XMLLiteParser getInstance() {
+        if (instance == null)
             instance = new XMLLiteParser();
         return instance;
     }
+
     public void fillBuffer(char c){
         buffer += c;
     }
 
-    public void createNode(){
-        assert (!buffer.isEmpty());
+    public void createNode() throws EmptyNameException{
+        if(buffer.isEmpty())
+            throw new EmptyNameException();
+
         XMLLiteNode node;
 
-        if(lastNode != null) {
-            node = new XMLLiteNode(buffer, lastNode);
-            rootNode = node;
-            // lastNode.addChildren(node); À faire par le constructeur à deux paramètres de la classe node.
-        }else{
+        if(lastNode == null) {
             node = new XMLLiteNode(buffer);
+            rootNode = node;
+        }else{
+            node = new XMLLiteNode(buffer, lastNode);
         }
 
         lastNode = node;
-        buffer = null;
+        buffer = "";
         nodeBeforeContent = false;
     }
 
-    public void closeNode(){
-        assert(buffer == lastNode.getName());
+    public void closeNode() throws UnexpectedClosingNameException{
+        if(lastNode!=null) {
+            if (buffer.compareTo(lastNode.toString()) != 0) {
+                throw new UnexpectedClosingNameException("\"" + buffer + "\"" + " found should be : " + "\"" + lastNode.toString() + "\"");
+            }
+        }else
+            System.err.println("Not intended null lastnode");
 
-        lastNode = lastNode.getParent();
-        buffer = null;
+        lastNode = lastNode.getParent(); //Gérer la femeture du noeud racine
+        buffer = "";
         nodeBeforeContent = true;
     }
 
-    public void fillNodeContent(){
-        assert(!(buffer.isEmpty() && nodeBeforeContent));
+    public void fillNodeContent() throws NodeBeforeContentException{
+        assert(!buffer.isEmpty());
+        if(nodeBeforeContent)
+            throw new NodeBeforeContentException();
 
         lastNode.fillContent(buffer);
-        buffer = null;
+        buffer = "";
     }
 
     public XMLLiteNode getRootNode() {
         return rootNode;
+    }
+
+    public boolean isRootNodeClosed(){
+        return lastNode == null;
+    }
+
+    public XMLLiteNode getLastNode() {
+        return lastNode;
     }
 }

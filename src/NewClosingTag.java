@@ -4,9 +4,10 @@
 public class NewClosingTag implements State {
     @Override
     public State transition(char c) {
-        if(c != '<' && c != '>' && c != '/')
+        if(c != '<' && c != '>' && c != '/'){
+            XMLLiteParser.getInstance().fillBuffer(c);
             return new ClosingTagName();
-        else
+        }else
             return new Error();
     }
 

@@ -3,13 +3,14 @@
  */
 public class NewTag implements State {
     @Override
-    public State transition(char c) {
+    public State transition(char c) throws EmptyNameException {
         if (c == '/')
             return new NewClosingTag();
-        else if ((c != '<') && (c != '>'))
+        else if ((c != '<') && (c != '>')) {
+            XMLLiteParser.getInstance().fillBuffer(c);
             return new NewTagName();
-        else
-            return new Error();
+        }else
+            throw new EmptyNameException();
     }
 
     @Override

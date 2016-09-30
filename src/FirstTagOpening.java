@@ -3,11 +3,12 @@
  */
 public class FirstTagOpening implements State {
     @Override
-    public State transition(char c) {
-        if (c != '<' && c != '>' && c != '/')
+    public State transition(char c) throws EmptyNameException {
+        if (c != '<' && c != '>' && c != '/') {
+            XMLLiteParser.getInstance().fillBuffer(c);
             return new NewTagName();
-        else
-            return new Error();
+        }else
+            throw new EmptyNameException();
     }
 
     @Override

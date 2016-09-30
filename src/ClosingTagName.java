@@ -3,7 +3,7 @@
  */
 public class ClosingTagName implements State {
     @Override
-    public State transition(char c) {
+    public State transition(char c) throws UnexpectedClosingNameException {
         if(c == '>') {
             XMLLiteParser.getInstance().closeNode();
             return new EndClosingTag();

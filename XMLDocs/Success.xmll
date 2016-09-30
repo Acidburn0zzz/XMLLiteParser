@@ -4,6 +4,16 @@
         <AnotherChildTag>
             More content
         </AnotherChildTag>
-        And always more content
+        <LOL>
+            Tu plantes ?
+        </LOL>
+    </ChildTag>
+    <ChildTag>
+        <AnotherChildTag>
+            More content
+        </AnotherChildTag>
+        <LOL>
+            Tu plantes ?
+        </LOL>
     </ChildTag>
 </FirstTag>

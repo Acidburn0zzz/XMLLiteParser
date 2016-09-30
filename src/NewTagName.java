@@ -3,7 +3,7 @@
  */
 public class NewTagName implements State {
     @Override
-    public State transition(char c) {
+    public State transition(char c) throws EmptyNameException {
         if (c == '>') {
             XMLLiteParser.getInstance().createNode();
             return new EndTagName();

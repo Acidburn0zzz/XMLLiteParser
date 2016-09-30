@@ -4,11 +4,12 @@
 public class EndTagName implements State {
     @Override
     public State transition(char c) {
-        if (c == '<')
+        if (c == '<') {
             return new NewTag();
-        else if (c != '<' && c != '>' && c != '/')
+        }else if (c != '>' && c != '/') {
+            XMLLiteParser.getInstance().fillBuffer(c);
             return new TextContent();
-        else
+        }else
             return new Error();
     }
 
