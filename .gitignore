@@ -1,3 +1,28 @@
 .idea/
 out/
 
+# LaTex
+
+Rapport/*.aux
+Rapport/*.glo
+Rapport/*.idx
+Rapport/*.log
+Rapport/*.toc
+Rapport/*.ist
+Rapport/*.acn
+Rapport/*.acr
+Rapport/*.alg
+Rapport/*.bbl
+Rapport/*.blg
+Rapport/*.dvi
+Rapport/*.glg
+Rapport/*.gls
+Rapport/*.ilg
+Rapport/*.ind
+Rapport/*.lof
+Rapport/*.lot
+Rapport/*.maf
+Rapport/*.mtc
+Rapport/*.mtc1
+Rapport/*.out
+Rapport/*.synctex.gz

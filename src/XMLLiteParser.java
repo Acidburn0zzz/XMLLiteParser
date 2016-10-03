@@ -49,7 +49,7 @@ public class XMLLiteParser {
         }else
             System.err.println("Not intended null lastnode");
 
-        lastNode = lastNode.getParent(); //Gérer la femeture du noeud racine
+        lastNode = lastNode.getParent();
         buffer = "";
         nodeBeforeContent = true;
     }

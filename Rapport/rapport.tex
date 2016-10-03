@@ -1,0 +1,203 @@
+\documentclass{article}
+\usepackage[top=1cm, bottom=1.5cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage[ansinew]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{1,0,0}
+
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color
+  basicstyle=\footnotesize,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+	numbers=left,
+	frame=leftline,
+	xleftmargin=42pt
+}
+
+\title{%
+    \begin{minipage}\linewidth
+        \centering \bfseries
+        Rapport du projet XMLLiteParser
+        \vskip3pt
+        \large Modélisation
+    \end{minipage}
+}
+
+
+
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+\date{}
+
+
+\begin{document}
+
+% définition des style de puces
+\renewcommand{\labelitemi}{$\bullet$}
+\renewcommand{\labelitemii}{$\circ$}
+\renewcommand{\labelitemiii}{$-$}
+\renewcommand{\labelitemiv}{$\triangleright$}
+
+
+\maketitle
+
+\section{Descriptif du sujet}
+Comme cité dans le sujet, un parseur / validateur XML-Lite est un programme capable de lire un fichier, d’indiquer s’il vérifie la norme XML-Lite et si oui, de l’analyser et de retenir sa structure ainsi que son contenu.
+Pour nous permettre de concevoir un programme réalisable, notre parseur / validateur opère sur un langage simplifié de XML, le XML-Lite conçu pour faciliter l'utilisation, les performances ainsi que les normes de conformité (XML 1.0).
+\subsection{Le XML-Lite}
+Pour être considéré comme du XML-Lite, les fichiers parsés / validés par notre programme doivent respecter certaines règles :
+\begin{itemize}
+	\item Une balise possède un nom.
+	\item Une balise doit être ouverte puis fermée.
+	\item Une balise peut contenir du texte.
+	\item Une balise peut contenir d'autre balises.
+	\item L'ordre des balises filles n'a pas d'importance et tout le texte contenu dans une balise est regroupé en un seul bloc.
+	\item Une balise fille doit être fermée avant la fermeture de la balise parent.
+	\item Une balise peut contenir une balise du même nom.
+	\item Un document doit commencer par l'ouverture d'une balise se fermant à la fin du document.
+\end{itemize}
+\subsection{Structure du document}
+Le parseur / validateur doit être capable de lire n'importe quel fichier XML-Lite mais doit aussi être en mesure d'attendre une certaine structure de document grâce à l'ajout d'un fichier .dtd appelé schéma.
+Grâce aux fichiers schéma, le parseur / validateur connais avec plus de finesse les balises filles autorisées ou non pour chaque balises. C'est une sorte de modèle qui permettra la validation du fichier XML-Lite.
+\section{Journal de bord}
+\subsection{Séance 1}
+Lors de la première séance, nous avons tout d'abord effectué le choix de sujet. Le parseur / validateur XMLLite nous a intéressé étant donné le grand nombre de programmes fonctionnant avec XML pour la persistance et la souplesse de ce format de base de données, nous étions intéressé de découvrir les notions de bases du XML.
+\paragraph{}
+Par ailleurs, durant cette séance, nous avons trouvé des informations sur les validateurs de documents et avons pensé à implémenter un automate fini pour modéliser notre validateur. Le design objet "state pattern" semblait particulièrement adapté.
+
+\subsection{Séance 2}
+Lors de la deuxième séance, nous avons modélisé l'automate fini schématiquement, puis, nous l'avons implémenté. Il est utilisé pour valider le document. Nous avons également codé tous les différents états.
+\paragraph{}
+\textbf{Exemple d'un état du validateur}
+\begin{lstlisting}[language=java]
+public class NewTag implements State {
+    @Override
+    public State transition(char c) {
+        if (c == '/')
+            return new NewClosingTag();
+        else if ((c != '<') && (c != '>')) {
+            XMLLiteParser.getInstance().fillBuffer(c);
+            return new NewTagName();
+        } else
+            return new Error();
+    }
+
+    @Override
+    public boolean isFinal() {
+        return false;
+    }
+}
+\end{lstlisting}
+
+\paragraph{}
+Puis, nous avons réfléchis à la structure mathématique du pasreur, nous sommes vite arrivé à celle d'un arbre. Cette structure à l'avantage d'être facile à designer en objet. Nous avons donc implémenté deux classes :
+\begin{itemize}
+	\item XMLLiteNode : Pour représenter une feuille ou un nœud de l'arbre.
+	\item XMLLiteParser : Pour construire l'arbre.
+\end{itemize}
+\paragraph{}
+Il a également fallu implémenter un buffer afin de stocker caractère par caractère les informations provenant des états du validateur.
+
+\subsection{Séance 3}
+
+\subsection{Séance 4}
+
+\section{Choix du modèle mathématique}
+
+\subsection{Le modèle mathématique}
+Pour nous permettre de parcourir rapidement un fichier XML-Lite, nous avons opté pour le développement d’un automate fini.
+\paragraph{}
+Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, il y a très peu d’états différents lors de la lecture d’un fichier. Les transitions entre états se font uniquement grâce à la différenciation des caractères ‘<’, ‘>’, ‘/’ et le reste.
+\paragraph{}
+Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide (exécution en 13ms pour un fichier XML-Lite de près de 700Mo).
+
+
+\subsection{Représentation de l'automate finis}
+\subsubsection{Schéma}
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.8cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[initial,state] (A)                    {$I$};
+  \node[state]         (B) [below of=A] 			{$FTO$};
+  \node[state]         (C) [right of=B] 			{$NTN$};
+  \node[state]         (D) [right of=C] 			{$ETN$};
+  \node[state]         (E) [above right of=D]	{$TC$};
+	\node[state]         (F) [below right of=D]	{$NT$};
+	\node[state]         (G) [right of=F]				{$NCT$};
+	\node[state]         (H) [right of=G]				{$CTN$};
+	\node[state]         (I) [right of=H]				{$ECT$};
+	\node[state]         (J) [below of=I]				{$F$};
+
+  \path (A) edge              node {<} (B)
+        (B) edge							node {char} (C)
+        (C) edge [loop above] node {char} (C)
+            edge 						  node {>} (D)
+        (D) edge 							node {char} (E)
+            edge              node {<} (F)
+        (E) edge [loop above] node {char} (E)
+						edge 						  node {<} (F)
+				(F) edge 							node {/} (G)
+						edge [bend left]	node {char} (C)
+				(G) edge							node {char} (H)
+				(H) edge [loop above] node {char} (H)
+						edge							node {>} (I)
+				(I) edge [bend left] 	node {<} (F)
+						edge 							node {EOF} (J);
+\end{tikzpicture}
+\subsubsection{Description des états}
+\begin{description}
+	\item [I] Initial
+	\item [FTO] First Tag Opening
+	\item [NTN] New Tag Name
+	\item [ETN] End Tag Name
+	\item [TC] Text Content
+	\item [NT] New Tag
+	\item [NCT] New Closing Tag
+	\item [CTN] Colsing Tag Name
+	\item [ECT] End Closing Tag
+	\item [F] Final
+\end{description}
+
+
+\section{Prolongements possibles}
+\subsection{Étudiez et justifiez les propriétés de la structure mathématique utilisée.}
+\subsection{Modifiez votre validateur afin qu’il permette le débogage du fichier XML. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
+\subsection{Modifiez votre validateur afin qu’il s’accorde à un schéma prédéfini. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
+\subsection{Modifiez votre validateur afin qu’il prenne en compte un schéma accompagnant éventuellement un fichier XML-Lite.}
+\subsection{Proposez un schéma permettant de stocker la base de données d’un générateur de QCM, chaque question ayant de 1 à 5 réponses, correctes ou non.}
+\subsection{Rajoutez à votre programme un interpréteur (pour le schéma du prolongement précédent).}
+\section{Conclusion}
+
+\section{Comment ajouter du code ?}
+\subsection{Comme ça}
+\lstinputlisting[language=java, firstline=1, lastline=45]{../src/main.java}
+
+\subsection{Ou comme ça}
+\begin{lstlisting}[language=java]
+class HelloWorldApp {
+    public static void main(String[] args) {
+        System.out.println("Hello World!"); // Display the string.
+        for (int i = 0; i < 100; ++i) {
+            System.out.println(i);
+        }
+    }
+}
+\end{lstlisting}
+
+\end{document}

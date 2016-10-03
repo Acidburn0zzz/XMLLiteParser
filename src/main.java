@@ -8,17 +8,17 @@ public class main {
     public static void main(String[] args) {
         TransitionSystem ts = new TransitionSystem();
         try {
-            long startTime = System.currentTimeMillis();
-            long elapsedTime;
-
-            ts.parseFile("XMLDocs\\Ok.xmll");
-            XMLLiteNode node = XMLLiteParser.getInstance().getRootNode();
-            elapsedTime = (new Date()).getTime() - startTime;
-            System.out.println("Document parsed in " + (elapsedTime) + " ms");
-
-
+            ts.openXMLFile("XMLDocs\\Success.xmll");
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        long startTime = System.currentTimeMillis();
+        long elapsedTime;
+        ts.start();
+        elapsedTime = (new Date()).getTime() - startTime;
+        System.out.println("Document validated in " + (elapsedTime) + " ms");
+        TreeView tv = new TreeView();
+        tv.setVisible(true);
         }
     }
 }
