@@ -49,7 +49,7 @@ public class XMLLiteParser {
         }else
             System.err.println("Not intended null lastnode");
 
-        lastNode = lastNode.getParent();
+        lastNode = (XMLLiteNode)lastNode.getParent();
         buffer = "";
         nodeBeforeContent = true;
     }
