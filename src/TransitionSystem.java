@@ -8,7 +8,7 @@ public class TransitionSystem {
         State currentState = new InitialState();
         char code = fileReader.nextChar();
 
-        while (code != 0){
+        while (code != 65535){
             try {
                 currentState = currentState.transition(code);
             } catch (NodeBeforeContentException e) {

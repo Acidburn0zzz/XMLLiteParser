@@ -7,9 +7,9 @@ import java.nio.charset.Charset;
 public class FileReader {
     private InputStreamReader reader;
     private File file;
+    private Logger logger;
     private InputStream inputStream;
     private Reader bufferedReader;
-    private char[] buffer;
     private int index;
     private int offset;
     private static final int LENGTH = 2048;
@@ -20,56 +20,40 @@ public class FileReader {
         encoding = Charset.defaultCharset();
         file = new File(path);
         handleFile(file);
-        bufferedReader.mark(LENGTH);
-        buffer = new char[LENGTH];
-        bufferedReader.read(buffer);
         index = 0;
         offset = 0;
     }
 
-    public void handleFile(File file) throws FileNotFoundException {
+    public void handleFile(File file) throws IOException {
         inputStream = new FileInputStream(file);
+        logger = Logger.getInstance();
+
         reader = new InputStreamReader(inputStream, encoding);
         bufferedReader = new BufferedReader(reader);
     }
 
     public char nextChar() throws IOException{
-        char c;
-        if(index < LENGTH) {
-            c = buffer[index];
-        }
-        else{
-            bufferedReader.read(buffer, 0, LENGTH);
-            offset += LENGTH;
-            index = 0;
-            c = buffer[index];
-        }
         index++;
+        char c = (char)bufferedReader.read();
         return c;
     }
 
     public int[] getCurrentPosition() throws IOException {
-        if(offset == 0)
-            offset = index;
-
         handleFile(file);
-
-        bufferedReader.mark(offset);
-        buffer = new char[offset];
-        bufferedReader.read(buffer, 0, offset);
-        char c = buffer[0];
-
+        char c = (char) bufferedReader.read();
         int line = 0;
         int character = 0;
-        index = 0;
 
-        while(c != 0 && index < offset){
+        int i = 0;
+        while(i < index){
+            System.out.println("Je boucle beaucoup");
             if(c == 13){
                 line++;
                 character = 0;
             }
             character++;
-            c = buffer[index++];
+            i++;
+            c = (char) bufferedReader.read();
         }
 
         int[] res = new int[2];
@@ -81,6 +65,7 @@ public class FileReader {
 
     public void close(){
         try {
+            logger.close();
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();

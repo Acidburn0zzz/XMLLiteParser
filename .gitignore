@@ -1,6 +1,6 @@
 .idea/
 out/
-
+log.txt
 # LaTex
 
 Rapport/*.aux

@@ -8,7 +8,7 @@ public class main {
     public static void main(String[] args) {
         TransitionSystem ts = new TransitionSystem();
         try {
-            ts.parseFile("XMLDocs\\ok.xmll");
+            ts.parseFile("XMLDocs\\Ok.xmll");
         } catch (IOException e) {
             e.printStackTrace();
         }
