@@ -7,6 +7,7 @@ public class XMLLiteParser {
     private XMLLiteNode lastNode;
     private boolean nodeBeforeContent; //Because there can be content only before new nodes
     private XMLLiteNode rootNode;
+    private boolean rootNodeClosed = false;
 
     private XMLLiteParser() {
         buffer = "";
@@ -48,8 +49,11 @@ public class XMLLiteParser {
             }
         }else
             System.err.println("Not intended null lastnode");
-
-        lastNode = (XMLLiteNode)lastNode.getParent();
+        if (lastNode != rootNode) {
+            lastNode = (XMLLiteNode) lastNode.getParent();
+        }else{
+            rootNodeClosed = true;
+        }
         buffer = "";
         nodeBeforeContent = true;
     }
@@ -68,7 +72,7 @@ public class XMLLiteParser {
     }
 
     public boolean isRootNodeClosed(){
-        return lastNode == null;
+        return rootNodeClosed;
     }
 
     public XMLLiteNode getLastNode() {

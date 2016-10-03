@@ -46,6 +46,8 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
     }
 
     public TreeNode getParent() {
+    if (parent == null)
+        System.out.println("lol");
         return (TreeNode)parent;
     }
 
