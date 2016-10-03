@@ -46,8 +46,6 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
     }
 
     public TreeNode getParent() {
-    if (parent == null)
-        System.out.println("lol");
         return (TreeNode)parent;
     }
 
@@ -64,15 +62,7 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
 
     @Override
     public boolean isLeaf() {
-        if(children.isEmpty()) {
-            System.out.println("true");
-            System.out.println(parent.toString());
-        }
-        else
-            System.out.println("false");
-
         return children.isEmpty();
-
     }
 
     @Override
