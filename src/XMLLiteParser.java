@@ -39,10 +39,10 @@ public class XMLLiteParser {
     }
 
     public void closeNode() throws UnexpectedClosingNameException{
-        if(lastNode!=null)
+        if(lastNode!=null) {
             if (buffer.compareTo(lastNode.toString()) != 0)
                 throw new UnexpectedClosingNameException("\"" + buffer + "\"" + " found should be : " + "\"" + lastNode.toString() + "\"");
-        else
+        }else
             System.err.println("Not intended null lastnode");
 
 
