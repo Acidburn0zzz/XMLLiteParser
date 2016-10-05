@@ -3,6 +3,7 @@ package XMLLiteParser;
 import XMLLiteParser.Exception.EmptyNameException;
 import XMLLiteParser.Exception.NodeBeforeContentException;
 import XMLLiteParser.Exception.UnexpectedClosingNameException;
+import XMLLiteParser.Validator.InitialState;
 
 import java.io.IOException;
 

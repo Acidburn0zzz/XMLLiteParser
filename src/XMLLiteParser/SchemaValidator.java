@@ -7,33 +7,40 @@ import java.util.Enumeration;
  * Created by MrMan on 05/10/2016.
  */
 public class SchemaValidator {
-    private ArrayList<Node> constraintNodes;
+    private Schema schema;
 
-    public boolean respectSchema(Node node, ArrayList<Constraint> constraints){
+    public SchemaValidator(Schema schema) {
+        this.schema = schema;
+    }
+
+    public boolean isValid(Node rootNode) {
         boolean res = true;
-        for (Constraint c : constraints) {
-            if (c.getName().equals(node.toString())){
-                ArrayList<Child> requiredChildren = c.getRequiredChildren();
-                Enumeration<Node> nodeEnum = node.children();
-                while (nodeEnum.hasMoreElements()){
-                    Child child = c.getChild(((Node)nodeEnum.nextElement()).toString());
-                    if (child != null){
-                        if (requiredChildren.contains(child)){
-                            requiredChildren.remove(child);
-                        }
-                    }else{
-                        res = false;
+        Constraint c = schema.getConstraint(rootNode.toString());
+
+        if (c != null) {
+            ArrayList<Child> requiredChildren = c.getRequiredChildren();
+            Enumeration nodeEnum = rootNode.children();
+
+            while (nodeEnum.hasMoreElements()) {
+                Node node = (Node) nodeEnum.nextElement();
+                Child child = c.getChild(node.toString());
+
+                if (child != null) {
+                    if (requiredChildren.contains(child)) {
+                        requiredChildren.remove(child);
                     }
-                }
-                if (requiredChildren.size() != 0){
+                } else {
                     res = false;
                 }
-                break;
+            }
+            if (!requiredChildren.isEmpty()) {
+                res = false;
             }
         }
-        if (node.getChildCount() != 0 && res != false){
-            while (node.children().hasMoreElements()){
-                respectSchema((Node)node.children().nextElement(), constraints);
+
+        if (res != false){
+            while (rootNode.children().hasMoreElements()){
+                isValid((Node) rootNode.children().nextElement());
             }
         }
         return res;
