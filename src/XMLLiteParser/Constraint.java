@@ -20,7 +20,7 @@ public class Constraint {
         children.add(c);
     }
 
-    public String getNom() {
+    public String getName() {
         return nom;
     }
 
