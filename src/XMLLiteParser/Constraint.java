@@ -10,7 +10,6 @@ public class Constraint {
     private ArrayList<Child> children;
 
     /**
-     *
      * @param nom nom de la balise à contraindre
      */
     public Constraint(String nom) {
@@ -29,4 +28,32 @@ public class Constraint {
         return children.size();
     }
 
+    /**
+     * @param name nom de l'enfant à rechercher
+     * @return l'enfant qui a pour nom le paramètre name.
+     * Si il y a plusieurs enfant avec le même nom, la méthode renvoie le premier.
+     */
+    public Child getChild(String name){
+        Child res = null;
+        for (Child c: children) {
+            if (c.getName().equals(name)){
+                res = c;
+                break; // on quitte la boucle dès qu'on trouve un enfant.
+            }
+        }
+        return res;
+    }
+
+    /**
+     * @return Liste de tout les enfants oblogatoires, si il n'y en a pas, la liste est juste vide.
+     */
+    public ArrayList<Child> getRequiredChildren(){
+        ArrayList<Child> res = new ArrayList<>();
+        for (Child c: children) {
+            if (c.isRequired()){
+                res.add(c);
+            }
+        }
+        return res;
+    }
 }
