@@ -1,3 +1,7 @@
+package XMLLiteParser;
+
+import XMLLiteParser.Gui.TreeView;
+
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import java.io.IOException;
@@ -19,7 +23,7 @@ public class main {
         elapsedTime = (new Date()).getTime() - startTime;
         System.out.println("Document validated in " + (elapsedTime) + " ms");
 
-        DefaultTreeModel tm = new DefaultTreeModel((TreeNode)XMLLiteParser.getInstance().getRootNode());
+        DefaultTreeModel tm = new DefaultTreeModel(Parser.getInstance().getRootNode());
         TreeView tv = new TreeView(tm);
 
         tv.setVisible(true);

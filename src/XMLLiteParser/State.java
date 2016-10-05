@@ -1,4 +1,8 @@
-import java.util.ArrayList;
+package XMLLiteParser;
+
+import XMLLiteParser.Exception.EmptyNameException;
+import XMLLiteParser.Exception.NodeBeforeContentException;
+import XMLLiteParser.Exception.UnexpectedClosingNameException;
 
 /**
  * XML LITE Parser - WTFPL license

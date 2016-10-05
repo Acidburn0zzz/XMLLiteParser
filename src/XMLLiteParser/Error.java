@@ -1,3 +1,5 @@
+package XMLLiteParser;
+
 /**
  * Created by Antoine on 14/09/2016.
  */

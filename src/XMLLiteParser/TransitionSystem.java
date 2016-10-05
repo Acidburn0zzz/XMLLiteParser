@@ -1,3 +1,9 @@
+package XMLLiteParser;
+
+import XMLLiteParser.Exception.EmptyNameException;
+import XMLLiteParser.Exception.NodeBeforeContentException;
+import XMLLiteParser.Exception.UnexpectedClosingNameException;
+
 import java.io.IOException;
 
 
@@ -33,7 +39,7 @@ public class TransitionSystem {
 
         fileReader.close();
 
-        if(!XMLLiteParser.getInstance().isRootNodeClosed())
+        if(!Parser.getInstance().isRootNodeClosed())
             System.err.println("The root node has not been closed");
     }
 }

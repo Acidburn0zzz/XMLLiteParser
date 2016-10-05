@@ -1,36 +1,42 @@
+package XMLLiteParser;
+
+import XMLLiteParser.Exception.EmptyNameException;
+import XMLLiteParser.Exception.NodeBeforeContentException;
+import XMLLiteParser.Exception.UnexpectedClosingNameException;
+
 /**
  * Created by MrMan on 12/09/2016.
  */
-public class XMLLiteParser {
-    private static XMLLiteParser instance;
+public class Parser {
+    private static Parser instance;
     private String buffer;
-    private XMLLiteNode lastNode;
-    private XMLLiteNode rootNode;
+    private Node lastNode;
+    private Node rootNode;
     private boolean nodeBeforeContent;
     private boolean rootNodeClosed = false;
 
-    private XMLLiteParser() {
+    private Parser() {
         buffer = "";
         nodeBeforeContent = false;
     }
 
-    public static XMLLiteParser getInstance() {
+    public static Parser getInstance() {
         if (instance == null)
-            instance = new XMLLiteParser();
+            instance = new Parser();
         return instance;
     }
 
-    public void createNode() throws EmptyNameException{
+    public void createNode() throws EmptyNameException {
         if(buffer.isEmpty())
             throw new EmptyNameException();
 
-        XMLLiteNode node;
+        Node node;
 
         if(lastNode == null) {
-            node = new XMLLiteNode(buffer);
+            node = new Node(buffer);
             rootNode = node;
         } else {
-            node = new XMLLiteNode(buffer, lastNode);
+            node = new Node(buffer, lastNode);
         }
 
         lastNode = node;
@@ -38,7 +44,7 @@ public class XMLLiteParser {
         nodeBeforeContent = false;
     }
 
-    public void closeNode() throws UnexpectedClosingNameException{
+    public void closeNode() throws UnexpectedClosingNameException {
         if(lastNode!=null) {
             if (buffer.compareTo(lastNode.toString()) != 0)
                 throw new UnexpectedClosingNameException("\"" + buffer + "\"" + " found should be : " + "\"" + lastNode.toString() + "\"");
@@ -47,7 +53,7 @@ public class XMLLiteParser {
 
 
         if (lastNode != rootNode)
-            lastNode = (XMLLiteNode) lastNode.getParent();
+            lastNode = (Node) lastNode.getParent();
         else
             rootNodeClosed = true;
 
@@ -55,7 +61,7 @@ public class XMLLiteParser {
         nodeBeforeContent = true;
     }
 
-    public void fillNodeContent() throws NodeBeforeContentException{
+    public void fillNodeContent() throws NodeBeforeContentException {
         assert(!buffer.isEmpty());
         if(nodeBeforeContent)
             throw new NodeBeforeContentException();
@@ -66,7 +72,7 @@ public class XMLLiteParser {
 
     public void fillBuffer(char c){ buffer += c; }
 
-    public XMLLiteNode getRootNode() { return rootNode; }
+    public Node getRootNode() { return rootNode; }
 
     public boolean isRootNodeClosed(){ return rootNodeClosed; }
 

@@ -1,22 +1,24 @@
+package XMLLiteParser;
+
 import javax.swing.tree.TreeNode;
 import java.util.*;
 
 /**
  * Created by MrMan on 12/09/2016.
  */
-public class XMLLiteNode implements TreeNode, Iterable<Integer> {
+public class Node implements TreeNode, Iterable<Integer> {
     private String name;
     private String content;
-    private XMLLiteNode parent;
-    private ArrayList<XMLLiteNode> children;
+    private Node parent;
+    private ArrayList<Node> children;
     
-    public XMLLiteNode(String name) {
+    public Node(String name) {
         this.name = name;
         this.parent = null;
         children = new ArrayList<>();
     }
 
-    public XMLLiteNode(String name, XMLLiteNode parent) {
+    public Node(String name, Node parent) {
         this.name = name;
         this.parent = parent;
         children = new ArrayList<>();
@@ -27,7 +29,7 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
         this.content = content;
     }
 
-    public void addChildren(XMLLiteNode node){
+    public void addChildren(Node node){
         children.add(node);
     }
 

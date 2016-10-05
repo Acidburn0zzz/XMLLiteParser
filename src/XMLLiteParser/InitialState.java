@@ -1,3 +1,9 @@
+package XMLLiteParser;
+
+import XMLLiteParser.Validator.FirstTagOpening;
+
+import java.lang.*;
+
 /**
  * Created by MrMan on 14/09/2016.
  */
