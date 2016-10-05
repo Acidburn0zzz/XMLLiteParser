@@ -36,10 +36,11 @@ public class FileReader {
 
     public int[] getCurrentPosition() throws IOException {
         handleFile(file);
-        int line = 0;
-        int character = 0;
+        int line = 1;
+        int character = 1;
 
-        for (int i = 0; i < index; i++) {
+        int number = index;
+        for (int i = 0; i < number; i++) {
             if(nextChar() == 13){
                 line++;
                 character = 1;

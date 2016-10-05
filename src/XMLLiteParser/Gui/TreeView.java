@@ -14,9 +14,6 @@ public class TreeView extends JFrame {
     public TreeView(DefaultTreeModel tm) {
         try {
             UIManager.LookAndFeelInfo[] lf = UIManager.getInstalledLookAndFeels();
-            for (UIManager.LookAndFeelInfo lfi : lf) {
-                System.out.println(lfi.getClassName().toString());
-            }
             UIManager.setLookAndFeel(lf[3].getClassName());
         } catch (ClassNotFoundException e) {
             e.printStackTrace();

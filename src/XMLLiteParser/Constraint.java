@@ -1,13 +1,14 @@
 package XMLLiteParser;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Created by Antoine on 05/10/2016.
  */
 public class Constraint {
     private String nom;
-    private ArrayList<Child> children;
+    private ArrayList<Child> children = new ArrayList<>();
 
     /**
      * @param nom nom de la balise à contraindre
@@ -16,7 +17,7 @@ public class Constraint {
         this.nom = nom;
     }
 
-    public void addChildren(Child c){
+    public void addChild(Child c){
         children.add(c);
     }
 
@@ -48,12 +49,11 @@ public class Constraint {
      * @return Liste de tout les enfants oblogatoires, si il n'y en a pas, la liste est juste vide.
      */
     public ArrayList<Child> getRequiredChildren(){
-        ArrayList<Child> res = new ArrayList<>();
-        for (Child c: children) {
-            if (c.isRequired()){
-                res.add(c);
-            }
-        }
+        ArrayList<Child> res = children.stream().filter(Child::isRequired).collect(Collectors.toCollection(ArrayList::new));
         return res;
+    }
+
+    public ArrayList<Child> getChildrenCopy() {
+        return new ArrayList<>(children);
     }
 }

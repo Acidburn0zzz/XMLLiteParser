@@ -19,13 +19,14 @@ public class SchemaValidator {
 
         if (c != null) {
             ArrayList<Child> requiredChildren = c.getRequiredChildren();
+            ArrayList<Child> children = c.getChildrenCopy();
             Enumeration nodeEnum = rootNode.children();
 
             while (nodeEnum.hasMoreElements()) {
                 Node node = (Node) nodeEnum.nextElement();
                 Child child = c.getChild(node.toString());
 
-                if (child != null) {
+                if (child != null && children.remove(child)) {
                     if (requiredChildren.contains(child)) {
                         requiredChildren.remove(child);
                     }
@@ -39,8 +40,10 @@ public class SchemaValidator {
         }
 
         if (res != false){
-            while (rootNode.children().hasMoreElements()){
-                isValid((Node) rootNode.children().nextElement());
+            Enumeration enumeration = rootNode.children();
+            while (enumeration.hasMoreElements() && res){
+                Node node = (Node) rootNode;
+                res =  isValid((Node) enumeration.nextElement());
             }
         }
         return res;
