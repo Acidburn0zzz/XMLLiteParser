@@ -7,65 +7,51 @@ import java.nio.charset.Charset;
 public class FileReader {
     private InputStreamReader reader;
     private File file;
-    private Logger logger;
+//    private Logger logger; //Only for debugging
     private InputStream inputStream;
     private Reader bufferedReader;
     private int index;
-    private int offset;
-    private static final int LENGTH = 2048;
-    private Charset encoding;
 
 
     public FileReader(String path) throws IOException {
-        encoding = Charset.defaultCharset();
         file = new File(path);
         handleFile(file);
         index = 0;
-        offset = 0;
     }
 
-    public void handleFile(File file) throws IOException {
+    private void handleFile(File file) throws IOException {
         inputStream = new FileInputStream(file);
-        logger = Logger.getInstance();
+//        logger = Logger.getInstance();  Only for debugging
 
-        reader = new InputStreamReader(inputStream, encoding);
+        reader = new InputStreamReader(inputStream, Charset.defaultCharset());
         bufferedReader = new BufferedReader(reader);
     }
 
     public char nextChar() throws IOException{
         index++;
-        char c = (char)bufferedReader.read();
-        return c;
+        return (char)bufferedReader.read();
     }
 
     public int[] getCurrentPosition() throws IOException {
         handleFile(file);
-        char c = (char) bufferedReader.read();
         int line = 0;
         int character = 0;
 
-        int i = 0;
-        while(i < index){
-            System.out.println("Je boucle beaucoup");
-            if(c == 13){
+        for (int i = 0; i < index; i++) {
+            if(nextChar() == 13){
                 line++;
-                character = 0;
+                character = 1;
+            } else {
+                character++;
             }
-            character++;
-            i++;
-            c = (char) bufferedReader.read();
         }
 
-        int[] res = new int[2];
-        res[0] = line;
-        res[1] = character;
-
-        return res;
+        return new int[] {line, character};
     }
 
     public void close(){
         try {
-            logger.close();
+//            logger.close(); only for debugging
             inputStream.close();
         } catch (IOException e) {
             e.printStackTrace();

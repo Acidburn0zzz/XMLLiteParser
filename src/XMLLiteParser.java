@@ -5,8 +5,8 @@ public class XMLLiteParser {
     private static XMLLiteParser instance;
     private String buffer;
     private XMLLiteNode lastNode;
-    private boolean nodeBeforeContent; //Because there can be content only before new nodes
     private XMLLiteNode rootNode;
+    private boolean nodeBeforeContent;
     private boolean rootNodeClosed = false;
 
     private XMLLiteParser() {
@@ -20,10 +20,6 @@ public class XMLLiteParser {
         return instance;
     }
 
-    public void fillBuffer(char c){
-        buffer += c;
-    }
-
     public void createNode() throws EmptyNameException{
         if(buffer.isEmpty())
             throw new EmptyNameException();
@@ -33,7 +29,7 @@ public class XMLLiteParser {
         if(lastNode == null) {
             node = new XMLLiteNode(buffer);
             rootNode = node;
-        }else{
+        } else {
             node = new XMLLiteNode(buffer, lastNode);
         }
 
@@ -43,17 +39,18 @@ public class XMLLiteParser {
     }
 
     public void closeNode() throws UnexpectedClosingNameException{
-        if(lastNode!=null) {
-            if (buffer.compareTo(lastNode.toString()) != 0) {
+        if(lastNode!=null)
+            if (buffer.compareTo(lastNode.toString()) != 0)
                 throw new UnexpectedClosingNameException("\"" + buffer + "\"" + " found should be : " + "\"" + lastNode.toString() + "\"");
-            }
-        }else
+        else
             System.err.println("Not intended null lastnode");
-        if (lastNode != rootNode) {
+
+
+        if (lastNode != rootNode)
             lastNode = (XMLLiteNode) lastNode.getParent();
-        }else{
+        else
             rootNodeClosed = true;
-        }
+
         buffer = "";
         nodeBeforeContent = true;
     }
@@ -67,15 +64,10 @@ public class XMLLiteParser {
         buffer = "";
     }
 
-    public XMLLiteNode getRootNode() {
-        return rootNode;
-    }
+    public void fillBuffer(char c){ buffer += c; }
 
-    public boolean isRootNodeClosed(){
-        return rootNodeClosed;
-    }
+    public XMLLiteNode getRootNode() { return rootNode; }
 
-    public XMLLiteNode getLastNode() {
-        return lastNode;
-    }
+    public boolean isRootNodeClosed(){ return rootNodeClosed; }
+
 }

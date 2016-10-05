@@ -31,39 +31,21 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
         children.add(node);
     }
 
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public TreeNode getChildAt(int childIndex) {
-        return (TreeNode)children.get(childIndex);
-    }
-
-    @Override
-    public int getChildCount() {
-        return children.size();
-    }
-
-    public TreeNode getParent() {
-        return (TreeNode)parent;
-    }
+    @Override public String toString() { return name; }
 
     //TreeNode Interface
-    @Override
-    public int getIndex(TreeNode node) {
-        return children.indexOf(this);
-    }
 
-    @Override
-    public boolean getAllowsChildren() {
-        return true;
-    }
+    @Override public TreeNode getChildAt(int childIndex) { return children.get(childIndex); }
 
-    @Override
-    public boolean isLeaf() {
-        return children.isEmpty();
-    }
+    @Override public int getChildCount() { return children.size(); }
+
+    @Override public TreeNode getParent() { return parent; }
+
+    @Override public int getIndex(TreeNode node) { return children.indexOf(this); }
+
+    @Override public boolean getAllowsChildren() { return true; }
+
+    @Override public boolean isLeaf() { return children.isEmpty(); }
 
     @Override
     public Enumeration children() {
@@ -92,10 +74,5 @@ public class XMLLiteNode implements TreeNode, Iterable<Integer> {
                 throw new NoSuchElementException();
             }
         };
-    }
-
-    @Override
-    public String toString() {
-        return getName();
     }
 }

@@ -10,21 +10,6 @@ public class TreeView extends JFrame {
     private JTree tree;
 
     public TreeView() {
-        try {
-            UIManager.LookAndFeelInfo[] lf = UIManager.getInstalledLookAndFeels();
-            for (UIManager.LookAndFeelInfo lfi : lf) {
-                System.out.println(lfi.getClassName().toString());
-            }
-            UIManager.setLookAndFeel(lf[4].getClassName());
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
 
         setContentPane(contentPane);
         setTitle("Un programme qu'il est bien pour visualiser les fichiers XMLLite");
@@ -32,8 +17,6 @@ public class TreeView extends JFrame {
         getRootPane().setDefaultButton(buttonOK);
         DefaultTreeModel tm = new DefaultTreeModel((TreeNode)XMLLiteParser.getInstance().getRootNode());
         tree.setModel(tm);
-
-
 
         buttonOK.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -64,12 +47,10 @@ public class TreeView extends JFrame {
     }
 
     private void onOK() {
-// add your code here
         dispose();
     }
 
     private void onCancel() {
-// add your code here if necessary
         dispose();
     }
 }
