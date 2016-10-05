@@ -6,7 +6,7 @@ import java.util.*;
 /**
  * Created by MrMan on 12/09/2016.
  */
-public class Node implements TreeNode, Iterable<Integer> {
+public class Node implements TreeNode {
     private String name;
     private String content;
     private Node parent;
@@ -49,32 +49,6 @@ public class Node implements TreeNode, Iterable<Integer> {
 
     @Override public boolean isLeaf() { return children.isEmpty(); }
 
-    @Override
-    public Enumeration children() {
-        return Collections.enumeration(children);
-    }
+    @Override public Enumeration children() { return Collections.enumeration(children); }
 
-    //Iterable Interface
-
-    @Override
-    public Iterator<Integer> iterator() {
-        return new Iterator<Integer>() {
-            private int cursor = 0;
-
-            @Override
-            public boolean hasNext() {
-                return children.size() > cursor;
-            }
-
-            @Override
-            public Integer next() {
-                if(this.hasNext()){
-                    int current = cursor;
-                    cursor++;
-                    return current;
-                }
-                throw new NoSuchElementException();
-            }
-        };
-    }
 }
