@@ -26,7 +26,7 @@ public class SchemaValidator {
                 Node node = (Node) nodeEnum.nextElement();
                 Child child = c.getChild(node.toString());
 
-                if (child != null && children.remove(child)) {
+                if (children.remove(child)) {
                     if (requiredChildren.contains(child)) {
                         requiredChildren.remove(child);
                     }

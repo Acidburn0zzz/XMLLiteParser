@@ -34,6 +34,18 @@ public class FileReader {
         return (char)bufferedReader.read();
     }
 
+    public String readFile() throws IOException {
+        String string = "";
+        char c = nextChar();
+
+        while (c != 13) {
+            string += c;
+            c = nextChar();
+        }
+
+        return string;
+    }
+
     public int[] getCurrentPosition() throws IOException {
         handleFile(file);
         int line = 1;
