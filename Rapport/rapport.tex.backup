@@ -77,7 +77,7 @@ Pour être considéré comme du XML-Lite, les fichiers parsés / validés par notre p
 
 \subsection{Exemple de fichiers XML-Lite}
 
-\subsubsection{Fichier XML-Lite correct}
+\subsubsection{Fichier XML-Lite corrct}
 \begin{lstlisting}
 <FirstTag>
     <ChildTag>
@@ -154,13 +154,10 @@ Il a également fallu implémenter un buffer afin de stocker caractère par caractè
 Après avoir implémenté le parseur en structure d'arbre lors de la séance 2, nous avons pu interfacer une IHM basée sur les noeuds et feuilles de l'arbre nous permettant de faire une représentation claire et précise du fonctionnement du parseur / validateur qui nous serivra principalement lors de la présentation de projet.
 
 \paragraph{}
-L'implémentation de la classe JTree nous permet alors de représenter visuellement la structure du fichier XML-Lite analysé formaté en structure d'arbre.
+L'implémentation de la C
 
 \subsection{Séance 4}
 Lors de la séance 4, nous avons du faire face à une erreur n'arrivant uniquement lors de la lecture de gros fichiers.
-
-\paragraph{}
-La bite.
 
 
 \section{Choix du modèle mathématique}
@@ -169,15 +166,12 @@ La bite.
 Pour nous permettre de parcourir rapidement un fichier XML-Lite, nous avons opté pour le développement d’un automate fini.
 
 \paragraph{}
-Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, il y a très peu d’états différents lors de la lecture d’un fichier. De plus, les transitions entre états se font uniquement grâce à la différenciation des caractères ‘<’, ‘>’, ‘/’ et le reste.
+Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, il y a très peu d’états différents lors de la lecture d’un fichier. Les transitions entre états se font uniquement grâce à la différenciation des caractères ‘<’, ‘>’, ‘/’ et le reste.
 
 \paragraph{}
 Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide (exécution en 13ms pour un fichier XML-Lite de près de 700Mo).
 
-\paragraph{}
-Enfin, ce modèle mathématique avec une implémantation et un débuggage relativement simple permet également une amélioration facile du programme grâce à la différenciation de tous les états dans différentes classes.
-
-\subsection{Représentation de l'automate fini}
+\subsection{Représentation de l'automate finis}
 
 \subsubsection{Schéma}
 
@@ -231,23 +225,29 @@ Enfin, ce modèle mathématique avec une implémantation et un débuggage relativeme
 
 \section{Prolongements possibles}
 
+\subsection{Étudiez et justifiez les propriétés de la structure mathématique utilisée.}
+
 \subsection{Modifiez votre validateur afin qu’il permette le débogage du fichier XML. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
 
 \subsection{Modifiez votre validateur afin qu’il s’accorde à un schéma prédéfini. Quel impact cette modification a eu sur la structure mathématique utilisée ?}
 
+\subsection{Modifiez votre validateur afin qu’il prenne en compte un schéma accompagnant éventuellement un fichier XML-Lite.}
+
+\subsection{Proposez un schéma permettant de stocker la base de données d’un générateur de QCM, chaque question ayant de 1 à 5 réponses, correctes ou non.}
+
+\subsection{Rajoutez à votre programme un interpréteur (pour le schéma du prolongement précédent).}
+
 
 \section{Conclusion}
-Ce projet aura été d'une grande expérience pour notre groupe. La création d'un outil permettant de parser et valider des documents XML-Lite tout en s'accordant sur un schéma prédéfini ou non nous a permis tout comme nous l'esperions au commencement de ce projet de découvrir les principes de base du XML mais également l'implémentation et la gestion d'un automate fini.
-En effet, 
+
 
 \section{Comment ajouter du code ?}
 
 \subsection{Comme ça}
 
-\lstinputlisting[language=java, firstline=1, lastline=45]{../src/XMLLiteParser/main.java}
+\lstinputlisting[language=java, firstline=1, lastline=45]{../src/main.java}
 
 \subsection{Ou comme ça}
-yolo
 
 \begin{lstlisting}[language=java]
 class HelloWorldApp {

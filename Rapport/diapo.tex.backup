@@ -1,0 +1,263 @@
+\documentclass[usepdftitlre=false]{beamer}
+
+\usepackage[francais]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[ansinew]{inputenc}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usetheme{Rochester}
+\usecolortheme{default}
+
+\title{Parseur / Validateur XML-Lite}
+\author{Mathis Deloge, Antoine Petot, Ange Picard}
+%\institute{IUT Informatique Dijon / Auxerre}
+\date{05 octobre 2016}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{1,0,0}
+
+\lstset{ %
+  backgroundcolor=\color{gray!30!white},   % choose the background color
+  basicstyle=\small\ttfamily,        % size of fonts used for the code
+  breaklines=true,                 % automatic line breaking only at whitespace
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  keywordstyle=\color{blue},       % keyword style
+  stringstyle=\color{mymauve},     % string literal style
+	numbers=left,
+	frame=leftline,
+	xleftmargin=42pt
+}
+
+\setbeamertemplate{navigation symbols}{%
+\insertslidenavigationsymbol
+\insertbackfindforwardnavigationsymbol
+}
+
+\setbeamercolor{background canvas}{bg=yellow!10!white}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+  \frametitle{Sommaire}
+  \tableofcontents[currentsection, hideothersubsections]
+  \end{frame}
+}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\section{Présentation du sujet}
+\subsection{Le sujet}
+\begin{frame}
+	\frametitle{Le sujet}
+	\begin{block}{Le XML-Lite}
+	 Le XML est un langage de balisage générique très utilisé en informatique. Nous utiliserons une version simplifiée : le XML-Lite.
+	\end{block}
+	\begin{block}{Descriptif}
+	Comme cité dans le sujet, un parseur / validateur XML-Lite est un programme capable de lire un fichier, 
+	d'indiquer s'il vérifie la norme XML-Lite et si oui, de l'analyser et de retenir sa structure ainsi que son contenu. 
+	L'utilisation d'un langage simplifié de XML nous permet de développer un programme réalisable dans le contexte donné tout en facilitant 
+	l'utilisation, les performances ainsi que les normes de conformité (XML 1.0).
+	\end{block} 
+\end{frame}
+
+\subsection{Prolongements possibles}
+\begin{frame}
+	\frametitle{Prolongements possibles}
+	\begin{block}{Les différents prolongements du sujet}
+	 \begin{itemize}
+	  \item Permettre le débugage du fichier XML
+	  
+	 \end{itemize}
+
+	\end{block}
+
+\end{frame}
+
+
+\subsection{Le XML-Lite}
+\begin{frame}
+	\frametitle{Le XML-Lite}
+	\begin{block}{Les règles du XML-Lite}
+		\begin{itemize}
+			\item Une balise possède un nom.
+			\item Une balise doit être ouverte puis fermée.
+			\item Une balise peut contenir du texte.
+			\item Une balise peut contenir d'autre balises.
+			\item L'ordre des balises filles n'a pas d'importance et tout le texte contenu dans une balise est regroupé en un seul bloc.
+			\item Une balise fille doit être fermée avant la fermeture de la balise parent.
+			\item Une balise peut contenir une balise du même nom.
+			\item Un document doit commencer par l'ouverture d'une balise se fermant à la fin du document.
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsubsection{XML-Lite correct}
+\begin{frame}[fragile]
+\frametitle{Exemples de XML-Lite}
+\begin{block}{XML-Lite correct}
+\begin{lstlisting}
+<FirstTag>
+	<ChildTag>
+		<AnotherChildTag>
+		</AnotherChildTag>
+	</ChildTag>
+	<tag>
+	</tag>
+</FirstTag>
+\end{lstlisting} 
+\end{block}
+\end{frame}
+
+\subsubsection{XML-Lite faux}
+\begin{frame}[fragile]
+\frametitle{Exemples de XML-Lite}
+\begin{block}{XML-Lite faux}
+\begin{lstlisting}
+  <FirstTag>
+      <SecondTag>
+	<EndTag>
+	  <AloneTag>
+	</>
+  </FirstTag>
+  </SecondTag>
+Un peu de texte
+\end{lstlisting}
+\end{block}
+\end{frame}
+
+
+\subsection{La structure du document}
+\begin{frame}
+	\frametitle{La structure du document}
+	\begin{block}{La structure}
+		Le parseur / validateur doit être capable de lire n'importe quel fichier XML-Lite mais doit aussi être en mesure d'attendre une certaine structure de document grâce à l'ajout d'un fichier .dtd appelé schéma.
+		Grâce aux fichiers schéma, le parseur / validateur connais avec plus de finesse les balises filles autorisées ou non pour chaque balises. C'est une sorte de modèle qui permettra la validation du fichier XML-Lite.
+	\end{block}
+\end{frame}
+
+
+\section{Modèle mathématique}
+\subsection{Choix du modèle mathématique}
+\begin{frame}
+	\frametitle{Choix du modèle mathématique}
+	\begin{block}{Un automate fini}
+		Pour nous permettre de parcourir rapidement un fichier XML-Lite, nous avons opté pour le développement d'un automate fini.
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{Simplicité et rigidité}
+		Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, il y a très peu d’états différents lors de la lecture d’un fichier. De plus, les transitions entre états se font uniquement grâce à la différenciation des caractères ‘<’, ‘>’, ‘/’ et le reste.
+	\end{block}
+	
+	\pause
+	
+	\begin{block}{Efficacité}
+		Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide (exécution en 13ms pour un fichier XML-Lite de près de 700Mo).
+	\end{block}
+\end{frame}
+
+\subsection{Représentation de l'automate fini}
+\begin{frame}
+	\frametitle{Représentation de l'automate fini}
+	
+	\begin{tikzpicture}[node distance=1.7cm, auto, initial text=,font=\small,>=stealth', scale=0.3]
+	  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+	  \node[initial,state] (A)                    	{$I$};
+	  \node[state]         (B) [below of=A] 	{$FTO$};
+	  \node[state]         (C) [right of=B] 	{$NTN$};
+	  \node[state]         (D) [right of=C] 	{$ETN$};
+	  \node[state]         (E) [above right of=D]	{$TC$};
+	  \node[state]         (F) [below right of=D]	{$NT$};
+	  \node[state]         (G) [right of=F]		{$NCT$};
+	  \node[state]         (H) [right of=G]		{$CTN$};
+	  \node[state]         (I) [right of=H]		{$ECT$};
+	  \node[state]         (J) [below of=I]		{$F$};
+
+	  \path (A) edge              	node {<} (B)
+		(B) edge		node {char} (C)
+		(C) edge [loop above] 	node {char} (C)
+		    edge 		node {>} (D)
+		(D) edge 		node {char} (E)
+		    edge              	node {<} (F)
+		(E) edge [loop above] 	node {char} (E)
+		    edge 		node {<} (F)
+		(F) edge 		node {/} (G)
+		    edge [bend left]	node {char} (C)
+		(G) edge		node {char} (H)
+		(H) edge [loop above] 	node {char} (H)
+		    edge		node {>} (I)
+		(I) edge [bend left] 	node {<} (F)
+		    edge 		node {EOF} (J);
+	\end{tikzpicture}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Légende de l'automate}
+	\begin{block}{Légende}
+		\begin{description}
+			\item [I] Initial
+			\item [FTO] First Tag Opening
+			\item [NTN] New Tag Name
+			\item [ETN] End Tag Name
+			\item [TC] Text Content
+			\item [NT] New Tag
+			\item [NCT] New Closing Tag
+			\item [CTN] Colsing Tag Name
+			\item [ECT] End Closing Tag
+			\item [F] Final
+		\end{description}
+	\end{block}
+\end{frame}
+
+
+
+\section{Résultats}
+\begin{frame}
+	\frametitle{Résultats}
+\end{frame}
+
+
+\section{Présentation du programme}
+\subsection{Le parseur}
+\begin{frame}
+	\frametitle{Le parseur}
+\end{frame}
+
+\subsection{Le validateur}
+\begin{frame}
+	\frametitle{Le validateur}
+\end{frame}
+
+\subsection{L'interpréteur}
+\begin{frame}
+	\frametitle{L'interpréteur}
+\end{frame}
+	
+
+\section{Conclusion}
+\begin{frame}
+	\frametitle{Conclusion}
+\end{frame}
+
+\end{document}

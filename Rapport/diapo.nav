@@ -1,0 +1,74 @@
+\beamer@endinputifotherversion {3.36pt}
+\headcommand {\slideentry {0}{0}{1}{1/1}{}{0}}
+\headcommand {\beamer@framepages {1}{1}}
+\headcommand {\sectionentry {1}{Pr\'esentation du sujet}{2}{Pr\'esentation du sujet}{0}}
+\headcommand {\beamer@sectionpages {1}{1}}
+\headcommand {\beamer@subsectionpages {1}{1}}
+\headcommand {\slideentry {1}{0}{1}{2/2}{}{0}}
+\headcommand {\beamer@framepages {2}{2}}
+\headcommand {\beamer@subsectionentry {0}{1}{1}{3}{Le sujet}}\headcommand {\beamer@subsectionpages {2}{2}}
+\headcommand {\slideentry {1}{1}{1}{3/3}{Le sujet}{0}}
+\headcommand {\beamer@framepages {3}{3}}
+\headcommand {\beamer@subsectionentry {0}{1}{2}{4}{Prolongements possibles}}\headcommand {\beamer@subsectionpages {3}{3}}
+\headcommand {\slideentry {1}{2}{1}{4/4}{Prolongements possibles}{0}}
+\headcommand {\beamer@framepages {4}{4}}
+\headcommand {\beamer@subsectionentry {0}{1}{3}{5}{Le XML-Lite}}\headcommand {\beamer@subsectionpages {4}{4}}
+\headcommand {\slideentry {1}{3}{1}{5/5}{Le XML-Lite}{0}}
+\headcommand {\beamer@framepages {5}{5}}
+\headcommand {\beamer@subsubsectionentry {0}{1}{3}{1}{6}{XML-Lite correct}}
+\headcommand {\slideentry {1}{3}{2}{6/6}{Le XML-Lite}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\beamer@subsubsectionentry {0}{1}{3}{2}{7}{XML-Lite faux}}
+\headcommand {\slideentry {1}{3}{3}{7/7}{Le XML-Lite}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\beamer@subsectionentry {0}{1}{4}{8}{La structure du document}}\headcommand {\beamer@subsectionpages {5}{7}}
+\headcommand {\slideentry {1}{4}{1}{8/8}{La structure du document}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\sectionentry {2}{Mod\`ele math\'ematique}{9}{Mod\`ele math\'ematique}{0}}
+\headcommand {\beamer@sectionpages {2}{8}}
+\headcommand {\beamer@subsectionpages {8}{8}}
+\headcommand {\slideentry {2}{0}{1}{9/9}{}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\beamer@subsectionentry {0}{2}{1}{10}{Choix du mod\`ele math\'ematique}}\headcommand {\beamer@subsectionpages {9}{9}}
+\headcommand {\slideentry {2}{1}{1}{10/12}{Choix du mod\`ele math\'ematique}{0}}
+\headcommand {\beamer@framepages {10}{12}}
+\headcommand {\beamer@subsectionentry {0}{2}{2}{13}{Repr\'esentation de l'automate fini}}\headcommand {\beamer@subsectionpages {10}{12}}
+\headcommand {\slideentry {2}{2}{1}{13/13}{Repr\'esentation de l'automate fini}{0}}
+\headcommand {\beamer@framepages {13}{13}}
+\headcommand {\slideentry {2}{2}{2}{14/14}{Repr\'esentation de l'automate fini}{0}}
+\headcommand {\beamer@framepages {14}{14}}
+\headcommand {\sectionentry {3}{R\'esultats}{15}{R\'esultats}{0}}
+\headcommand {\beamer@sectionpages {9}{14}}
+\headcommand {\beamer@subsectionpages {13}{14}}
+\headcommand {\slideentry {3}{0}{1}{15/15}{}{0}}
+\headcommand {\beamer@framepages {15}{15}}
+\headcommand {\slideentry {3}{0}{2}{16/16}{}{0}}
+\headcommand {\beamer@framepages {16}{16}}
+\headcommand {\sectionentry {4}{Pr\'esentation du programme}{17}{Pr\'esentation du programme}{0}}
+\headcommand {\beamer@sectionpages {15}{16}}
+\headcommand {\beamer@subsectionpages {15}{16}}
+\headcommand {\slideentry {4}{0}{1}{17/17}{}{0}}
+\headcommand {\beamer@framepages {17}{17}}
+\headcommand {\beamer@subsectionentry {0}{4}{1}{18}{Le parseur}}\headcommand {\beamer@subsectionpages {17}{17}}
+\headcommand {\slideentry {4}{1}{1}{18/18}{Le parseur}{0}}
+\headcommand {\beamer@framepages {18}{18}}
+\headcommand {\beamer@subsectionentry {0}{4}{2}{19}{Le validateur}}\headcommand {\beamer@subsectionpages {18}{18}}
+\headcommand {\slideentry {4}{2}{1}{19/19}{Le validateur}{0}}
+\headcommand {\beamer@framepages {19}{19}}
+\headcommand {\beamer@subsectionentry {0}{4}{3}{20}{L'interpr\'eteur}}\headcommand {\beamer@subsectionpages {19}{19}}
+\headcommand {\slideentry {4}{3}{1}{20/20}{L'interpr\'eteur}{0}}
+\headcommand {\beamer@framepages {20}{20}}
+\headcommand {\sectionentry {5}{Conclusion}{21}{Conclusion}{0}}
+\headcommand {\beamer@sectionpages {17}{20}}
+\headcommand {\beamer@subsectionpages {20}{20}}
+\headcommand {\slideentry {5}{0}{1}{21/21}{}{0}}
+\headcommand {\beamer@framepages {21}{21}}
+\headcommand {\slideentry {5}{0}{2}{22/22}{}{0}}
+\headcommand {\beamer@framepages {22}{22}}
+\headcommand {\slideentry {5}{0}{3}{23/23}{}{0}}
+\headcommand {\beamer@framepages {23}{23}}
+\headcommand {\beamer@partpages {1}{23}}
+\headcommand {\beamer@subsectionpages {21}{23}}
+\headcommand {\beamer@sectionpages {21}{23}}
+\headcommand {\beamer@documentpages {23}}
+\headcommand {\def \inserttotalframenumber {21}}
