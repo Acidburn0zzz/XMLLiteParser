@@ -1,4 +1,4 @@
-package XMLLiteParser;
+package XMLLiteParser.IO;
 
 import java.io.*;
 import java.nio.charset.Charset;
@@ -38,11 +38,10 @@ public class FileReader {
         String string = "";
         char c = nextChar();
 
-        while (c != 13) {
+        while (c != 65535) {
             string += c;
             c = nextChar();
         }
-
         return string;
     }
 

@@ -1,4 +1,4 @@
-package XMLLiteParser;
+package XMLLiteParser.Core;
 
 import javax.swing.tree.TreeNode;
 import java.util.*;
@@ -11,7 +11,8 @@ public class Node implements TreeNode {
     private String content;
     private Node parent;
     private ArrayList<Node> children;
-    
+
+    //region Constructors
     public Node(String name) {
         this.name = name;
         this.parent = null;
@@ -24,19 +25,18 @@ public class Node implements TreeNode {
         children = new ArrayList<>();
         parent.addChildren(this);
     }
+    //endregion
 
-    public void fillContent(String content){
-        this.content = content;
-    }
+    //region Getters and setters
+    public void setContent(String content){ this.content = content; }
+    public String getContent() { return content; }
 
-    public void addChildren(Node node){
-        children.add(node);
-    }
+    public String getName() { return name; }
 
-    @Override public String toString() { return name; }
+    public void addChildren(Node node){ children.add(node); }
+    //endregion
 
-    //TreeNode Interface
-
+    //region TreeNode Interface
     @Override public TreeNode getChildAt(int childIndex) { return children.get(childIndex); }
 
     @Override public int getChildCount() { return children.size(); }
@@ -50,5 +50,6 @@ public class Node implements TreeNode {
     @Override public boolean isLeaf() { return children.isEmpty(); }
 
     @Override public Enumeration children() { return Collections.enumeration(children); }
+    //endregion
 
 }

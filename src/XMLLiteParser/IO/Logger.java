@@ -1,4 +1,4 @@
-package XMLLiteParser;
+package XMLLiteParser.IO;
 
 import java.io.*;
 

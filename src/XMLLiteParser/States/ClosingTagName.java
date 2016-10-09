@@ -1,8 +1,6 @@
-package XMLLiteParser.Validator;
+package XMLLiteParser.States;
 
-import XMLLiteParser.Error;
-import XMLLiteParser.Parser;
-import XMLLiteParser.State;
+import XMLLiteParser.Core.Parser;
 import XMLLiteParser.Exception.UnexpectedClosingNameException;
 
 /**

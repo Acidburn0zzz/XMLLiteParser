@@ -1,4 +1,4 @@
-package XMLLiteParser;
+package XMLLiteParser.States;
 
 /**
  * Created by Antoine on 14/09/2016.

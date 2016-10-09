@@ -1,18 +1,15 @@
-package XMLLiteParser.Validator;
+package XMLLiteParser.States;
 
 import XMLLiteParser.Exception.EmptyNameException;
-import XMLLiteParser.Parser;
-import XMLLiteParser.State;
+import XMLLiteParser.Core.Parser;
 
 /**
- * Created by MrMan on 14/09/2016.
+ * Created by Antoine on 14/09/2016.
  */
-public class NewTag implements State {
+public class FirstTagOpening implements State {
     @Override
     public State transition(char c) throws EmptyNameException {
-        if (c == '/')
-            return new NewClosingTag();
-        else if ((c != '<') && (c != '>')) {
+        if (c != '<' && c != '>' && c != '/') {
             Parser.getInstance().fillBuffer(c);
             return new NewTagName();
         }else

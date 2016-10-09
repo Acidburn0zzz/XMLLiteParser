@@ -1,6 +1,7 @@
-package XMLLiteParser;
+package XMLLiteParser.SchemaTools;
 
 import XMLLiteParser.Exception.InvalidDocumentException;
+import XMLLiteParser.Core.Node;
 
 import java.io.IOException;
 
@@ -29,6 +30,7 @@ public class SchemaInterpreter {
             schema = schemaConstructor.createSchema(path);
             schemaValidator = new SchemaValidator(schema);
             res = schemaValidator.isValid(rootNode);
+            //TODO maybe should we create convenience method for the validator ?
         } catch (InvalidDocumentException e) {
             e.printStackTrace();
         }

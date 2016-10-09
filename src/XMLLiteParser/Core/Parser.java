@@ -1,4 +1,4 @@
-package XMLLiteParser;
+package XMLLiteParser.Core;
 
 import XMLLiteParser.Exception.EmptyNameException;
 import XMLLiteParser.Exception.NodeBeforeContentException;
@@ -21,6 +21,7 @@ public class Parser {
     }
 
     public static Parser getInstance() {
+        //TODO This shouldn't be a singleton, what if we try to parse more than one document at the same time ?
         if (instance == null)
             instance = new Parser();
         return instance;
@@ -46,8 +47,8 @@ public class Parser {
 
     public void closeNode() throws UnexpectedClosingNameException {
         if(lastNode!=null) {
-            if (buffer.compareTo(lastNode.toString()) != 0)
-                throw new UnexpectedClosingNameException("\"" + buffer + "\"" + " found should be : " + "\"" + lastNode.toString() + "\"");
+            if (buffer.compareTo(lastNode.getName()) != 0)
+                throw new UnexpectedClosingNameException("\"" + buffer + "\"" + " found should be : " + "\"" + lastNode.getName() + "\"");
         }else
             System.err.println("Not intended null lastnode");
 
@@ -66,14 +67,16 @@ public class Parser {
         if(nodeBeforeContent)
             throw new NodeBeforeContentException();
 
-        lastNode.fillContent(buffer);
+        lastNode.setContent(buffer);
         buffer = "";
     }
 
     public void fillBuffer(char c){ buffer += c; }
 
+    //region Getters and Setters
     public Node getRootNode() { return rootNode; }
 
     public boolean isRootNodeClosed(){ return rootNodeClosed; }
+    //endregion
 
 }

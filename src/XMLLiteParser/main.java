@@ -1,9 +1,12 @@
 package XMLLiteParser;
 
+import XMLLiteParser.Core.Node;
+import XMLLiteParser.Core.Parser;
+import XMLLiteParser.Core.TransitionSystem;
 import XMLLiteParser.Gui.TreeView;
+import XMLLiteParser.SchemaTools.SchemaInterpreter;
 
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 import java.io.IOException;
 import java.util.Date;
 
@@ -12,33 +15,25 @@ import java.util.Date;
  */
 public class main {
     public static void main(String[] args) {
-        TransitionSystem ts = new TransitionSystem();
+        //TODO remove all todos before the end
+        //TODO if we have time : verify class structure
         long startTime = System.currentTimeMillis();
-        long elapsedTime;
+
+        TransitionSystem ts = new TransitionSystem();
+        Node rootNode = null;
+
         try {
             ts.parseFile("XMLDocs\\Ok.xmll");
+            rootNode = Parser.getInstance().getRootNode();
+
+            SchemaInterpreter schemaInterpreter = SchemaInterpreter.getInstance();
+            schemaInterpreter.validateTree(rootNode, "XMLDocs\\QCM.dtd");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
 
-        Node rootNode = Parser.getInstance().getRootNode();
-
-        Schema schema = new Schema();
-        Constraint constraint = new Constraint("CD");
-        constraint.addChild(new Child("TITLE", true));
-        constraint.addChild(new Child("ARTIST", true));
-        constraint.addChild(new Child("COUNTRY", true));
-        constraint.addChild(new Child("COMPANY", true));
-        constraint.addChild(new Child("PRICE", true));
-        constraint.addChild(new Child("YEAR", true));
-
-        schema.addConstraint(constraint);
-
-        SchemaValidator schemaValidator = new SchemaValidator(schema);
-        System.out.println(schemaValidator.isValid(rootNode));
-
-        elapsedTime = (new Date()).getTime() - startTime;
-        System.out.println("Document validated in " + (elapsedTime) + " ms");
+        System.out.println("Document validated in " + (new Date().getTime() - startTime) + " ms");
 
         DefaultTreeModel tm = new DefaultTreeModel(rootNode);
         TreeView tv = new TreeView(tm);

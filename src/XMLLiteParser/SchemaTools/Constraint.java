@@ -1,4 +1,4 @@
-package XMLLiteParser;
+package XMLLiteParser.SchemaTools;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
  * Created by Antoine on 05/10/2016.
  */
 public class Constraint {
+    //TODO translate in english
     private String nom;
     private ArrayList<Child> children = new ArrayList<>();
 
@@ -17,17 +18,12 @@ public class Constraint {
         this.nom = nom;
     }
 
-    public void addChild(Child c){
-        children.add(c);
-    }
+    //region Getters and setters
+    public void addChild(Child c){ children.add(c); }
 
-    public String getName() {
-        return nom;
-    }
+    public String getName() { return nom; }
 
-    public int getChildCount(){
-        return children.size();
-    }
+    public int getChildCount(){ return children.size(); }
 
     /**
      * @param name nom de l'enfant à rechercher
@@ -49,11 +45,9 @@ public class Constraint {
      * @return Liste de tout les enfants oblogatoires, si il n'y en a pas, la liste est juste vide.
      */
     public ArrayList<Child> getRequiredChildren(){
-        ArrayList<Child> res = children.stream().filter(Child::isRequired).collect(Collectors.toCollection(ArrayList::new));
-        return res;
+        return children.stream().filter(Child::isRequired).collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Child> getChildrenCopy() {
-        return new ArrayList<>(children);
-    }
+    public ArrayList<Child> getChildrenCopy() { return new ArrayList<>(children); }
+    //endregion
 }

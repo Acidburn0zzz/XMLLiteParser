@@ -1,0 +1,44 @@
+<QCM>
+    <QUESTION>
+        Who won ?
+        <ANSWER>
+            me
+            <VALID>
+                true
+            </VALID>
+        </ANSWER>
+        <ANSWER>
+            you
+            <VALID>
+                true
+            </VALID>
+        </ANSWER>
+        <ANSWER>
+            Nobody
+            <VALID>
+                true
+            </VALID>
+        </ANSWER>
+    </QUESTION>
+    <QUESTION>
+        Why ?
+        <ANSWER>
+            Because of you
+            <VALID>
+                true
+            </VALID>
+        </ANSWER>
+        <ANSWER>
+            Because of me
+            <VALID>
+                true
+            </VALID>
+        </ANSWER>
+        <ANSWER>
+            You loosed anyway
+            <VALID>
+                true
+            </VALID>
+        </ANSWER>
+    </QUESTION>
+</QCM>

@@ -1,4 +1,4 @@
-package XMLLiteParser;
+package XMLLiteParser.States;
 
 import XMLLiteParser.Exception.EmptyNameException;
 import XMLLiteParser.Exception.NodeBeforeContentException;

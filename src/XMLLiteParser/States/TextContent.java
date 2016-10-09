@@ -1,9 +1,7 @@
-package XMLLiteParser.Validator;
+package XMLLiteParser.States;
 
-import XMLLiteParser.Error;
 import XMLLiteParser.Exception.NodeBeforeContentException;
-import XMLLiteParser.Parser;
-import XMLLiteParser.State;
+import XMLLiteParser.Core.Parser;
 
 import java.lang.*;
 

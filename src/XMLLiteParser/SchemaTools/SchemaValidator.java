@@ -1,4 +1,6 @@
-package XMLLiteParser;
+package XMLLiteParser.SchemaTools;
+
+import XMLLiteParser.Core.Node;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -15,7 +17,7 @@ public class SchemaValidator {
 
     public boolean isValid(Node rootNode) {
         boolean res = true;
-        Constraint c = schema.getConstraint(rootNode.toString());
+        Constraint c = schema.getConstraint(rootNode.getName());
 
         if (c != null) {
             ArrayList<Child> requiredChildren = c.getRequiredChildren();
@@ -24,7 +26,7 @@ public class SchemaValidator {
 
             while (nodeEnum.hasMoreElements()) {
                 Node node = (Node) nodeEnum.nextElement();
-                Child child = c.getChild(node.toString());
+                Child child = c.getChild(node.getName());
 
                 if (children.remove(child)) {
                     if (requiredChildren.contains(child)) {
@@ -39,7 +41,7 @@ public class SchemaValidator {
             }
         }
 
-        if (res != false){
+        if (res){
             Enumeration enumeration = rootNode.children();
             while (enumeration.hasMoreElements() && res){
                 Node node = (Node) rootNode;

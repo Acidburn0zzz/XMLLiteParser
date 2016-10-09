@@ -1,7 +1,4 @@
-package XMLLiteParser.Validator;
-
-import XMLLiteParser.Error;
-import XMLLiteParser.State;
+package XMLLiteParser.States;
 
 /**
  * Created by MrMan on 14/09/2016.

@@ -1,9 +1,7 @@
-package XMLLiteParser.Validator;
+package XMLLiteParser.States;
 
 import XMLLiteParser.Exception.EmptyNameException;
-import XMLLiteParser.Error;
-import XMLLiteParser.Parser;
-import XMLLiteParser.State;
+import XMLLiteParser.Core.Parser;
 
 import java.lang.*;
 

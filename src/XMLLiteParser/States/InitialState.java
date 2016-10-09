@@ -1,8 +1,4 @@
-package XMLLiteParser.Validator;
-
-import XMLLiteParser.Error;
-import XMLLiteParser.State;
-import XMLLiteParser.Validator.FirstTagOpening;
+package XMLLiteParser.States;
 
 import java.lang.*;
 
