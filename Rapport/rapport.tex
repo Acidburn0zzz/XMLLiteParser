@@ -89,7 +89,7 @@ Pour être considéré comme du XML-Lite, les fichiers parsés / validés par notre p
 </FirstTag>
 \end{lstlisting}
 
-\subsubsection{Fichier XML-Lite Faux}
+\subsubsection{Fichier XML-Lite invalide}
 \begin{lstlisting}
   <FirstTag>
       <SecondTag>
@@ -158,6 +158,9 @@ lors de la présentation de projet.
 
 \paragraph{}
 L'implémentation de la classe JTree nous permet alors de représenter visuellement la structure du fichier XML-Lite analysé formaté en structure d'arbre.
+
+\paragraph{}
+Lors de cette séance, nous avons également mis en place un débogage à la volée des fichiers XML grâce à l’automate fini. Ainsi, on lève des exceptions quand il y a un problème avec l’arbre généré par nos états. Cela nous assure d’avoir en permanence un arbre cohérent ou une erreur le cas échéant.
 
 \subsection{Séance 4}
 Lors de la séance 4, nous avons dû faire face à une erreur n’arrivant uniquement lors de la lecture de gros fichiers. En effet, 
