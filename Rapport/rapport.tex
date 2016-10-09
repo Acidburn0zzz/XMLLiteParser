@@ -157,11 +157,9 @@ Après avoir implémenté le parseur en structure d'arbre lors de la séance 2, nous
 L'implémentation de la classe JTree nous permet alors de représenter visuellement la structure du fichier XML-Lite analysé formaté en structure d'arbre.
 
 \subsection{Séance 4}
-Lors de la séance 4, nous avons du faire face à une erreur n'arrivant uniquement lors de la lecture de gros fichiers.
-
+Lors de la séance 4, nous avons dû faire face à une erreur n’arrivant uniquement lors de la lecture de gros fichiers. En effet, la validation de ces fichiers posait problème pour les dernières balises, le Parser rajoutait des balises filles au root node, à la fin, alors qu’elles n’existaient pas…
 \paragraph{}
-La bite.
-
+Nous avons pensé que ce problème provenait sans doute de notre classe qui lit les fichiers. Pour vérifier son fonctionnement, nous avons donc essayé de lire le fichier et de réécrire son contenu directement dans une copie. Et il est apparu qu’en effet, notre lecteur rajoutait des mauvais caractères en fin de fichier. Ceci a cause d’un buffer mal géré. Nous avons donc réécrit la classe de lecture des fichiers caractère par caractère avec des objets mieux adaptés.
 
 \section{Choix du modèle mathématique}
 
