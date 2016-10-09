@@ -21,7 +21,7 @@ public class Child {
 
     @Override
     public String toString() {
-        return super.toString() + " " + getName();
+        return getName();
     }
 
     //endregion

@@ -35,7 +35,7 @@ public class Node implements TreeNode {
 
     public void addChildren(Node node){ children.add(node); }
 
-    @Override public String toString() { return super.toString() + " " + getName(); }
+    @Override public String toString() { return getName(); }
     //endregion
 
     //region TreeNode Interface
