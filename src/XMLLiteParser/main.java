@@ -9,6 +9,8 @@ import XMLLiteParser.SchemaTools.SchemaInterpreter;
 import javax.swing.tree.DefaultTreeModel;
 import java.io.IOException;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by MrMan on 12/09/2016.
@@ -34,6 +36,7 @@ public class main {
         }
 
         System.out.println("Document validated in " + (new Date().getTime() - startTime) + " ms");
+
 
         DefaultTreeModel tm = new DefaultTreeModel(rootNode);
         TreeView tv = new TreeView(tm);

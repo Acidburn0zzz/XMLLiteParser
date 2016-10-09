@@ -4,7 +4,7 @@ import XMLLiteParser.Exception.EmptyNameException;
 import XMLLiteParser.Exception.NodeBeforeContentException;
 import XMLLiteParser.Exception.UnexpectedClosingNameException;
 import XMLLiteParser.IO.FileReader;
-import XMLLiteParser.States.InitialState;
+import XMLLiteParser.States.ParserStates.InitialState;
 import XMLLiteParser.States.State;
 
 import java.io.IOException;

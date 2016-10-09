@@ -1,7 +1,8 @@
-package XMLLiteParser.States;
+package XMLLiteParser.States.ParserStates;
 
 import XMLLiteParser.Exception.NodeBeforeContentException;
 import XMLLiteParser.Core.Parser;
+import XMLLiteParser.States.State;
 
 import java.lang.*;
 

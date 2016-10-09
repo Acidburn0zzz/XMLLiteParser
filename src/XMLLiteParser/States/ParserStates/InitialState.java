@@ -1,4 +1,6 @@
-package XMLLiteParser.States;
+package XMLLiteParser.States.ParserStates;
+
+import XMLLiteParser.States.State;
 
 import java.lang.*;
 

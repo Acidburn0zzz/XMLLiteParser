@@ -1,7 +1,8 @@
-package XMLLiteParser.States;
+package XMLLiteParser.States.ParserStates;
 
 import XMLLiteParser.Exception.EmptyNameException;
 import XMLLiteParser.Core.Parser;
+import XMLLiteParser.States.State;
 
 /**
  * Created by Antoine on 14/09/2016.
