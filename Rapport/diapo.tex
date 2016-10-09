@@ -67,9 +67,11 @@
 \subsection{Le sujet}
 \begin{frame}
 	\frametitle{Le sujet}
+	\pause
 	\begin{block}{Le XML-Lite}
 	 Le XML est un langage balisé. Nous utiliserons une version simplifiée : le XML-Lite.
 	\end{block}
+	\pause
 	\begin{block}{Descriptif}
 	Un parseur / validateur XML-Lite est un programme capable de lire un fichier, 
 	d'indiquer s'il vérifie la norme XML-Lite et si oui, de l'analyser et de retenir sa structure ainsi que son contenu.
@@ -79,6 +81,7 @@
 \subsection{Prolongements possibles}
 \begin{frame}
 	\frametitle{Prolongements possibles}
+	\pause
 	\begin{block}{Les différents prolongements du sujet}
 	 \begin{itemize}
 	  \item Permettre le débuggage du fichier XML.
@@ -94,6 +97,7 @@
 \subsection{Le XML-Lite}
 \begin{frame}
 	\frametitle{Le XML-Lite}
+	\pause
 	\begin{block}{Les règles}
 		\begin{itemize}
 			\item Une balise possède un nom.
@@ -111,6 +115,7 @@
 \subsubsection{XML-Lite correct}
 \begin{frame}[fragile]
 \frametitle{Exemples de XML-Lite}
+\pause
 \begin{block}{XML-Lite correct}
 \begin{lstlisting}
 <FirstTag>
@@ -123,6 +128,7 @@
 </FirstTag>
 \end{lstlisting} 
 \end{block}
+\pause
 \begin{block}{Raisons}
 \begin{itemize}
  \item Une balise s'ouvre en début de document et se ferme en fin.
@@ -136,6 +142,7 @@
 \subsubsection{XML-Lite invalide}
 \begin{frame}[fragile]
 \frametitle{Exemples de XML-Lite}
+\pause
 \begin{block}{XML-Lite invalide}
 \begin{lstlisting}
   <FirstTag>
@@ -148,6 +155,7 @@
 Un peu de texte
 \end{lstlisting}
 \end{block}
+\pause
 \begin{block}{Raisons}
 \begin{itemize}
  \item Les balises ne sont pas correctement imbriquées.
@@ -163,6 +171,7 @@ Un peu de texte
 
 \begin{frame}
  \frametitle{Automate fini}
+ \pause
  \begin{block}{Contrainte du validateur}
   Correspondance au modèle syntaxique du fichier XML-Lite.
  \end{block}
@@ -183,6 +192,7 @@ Un peu de texte
 \begin{frame}
 	\frametitle{Représentation de l'automate fini}
 	
+	\pause
 	\begin{tikzpicture}[node distance=1.7cm, auto, initial text=,font=\small,>=stealth', scale=0.3]
 	  \tikzstyle{every state}=[fill=red,draw=none,text=white]
 
@@ -217,6 +227,7 @@ Un peu de texte
 
 \begin{frame}
 	\frametitle{Légende de l'automate}
+	\pause
 	\begin{block}{Légende}
 		\begin{description}
 			\item [I] Initial
@@ -236,9 +247,11 @@ Un peu de texte
 \subsection{Un arbre...}
 \begin{frame}
  \frametitle{Un arbre...}
+ \pause
  \begin{block}{Contraintes}
  Représenter la structure d'un document XML-Lite.
  \end{block}
+ \pause
  \begin{block}{Solution}
   Un document XML ayant déjà une structure d'arbre, c'est pourquoi nous avons adopter une structure d'arbre pour la représentation.
  \end{block}
@@ -252,12 +265,14 @@ Un peu de texte
 \subsection{Le parseur / validateur}
 \begin{frame}
 	\frametitle{Le parseur / validateur} 
+	\pause
 	\begin{block}{Définition}
 	  \begin{itemize}
 	    \item Analyse syntaxique d'un document
 	    \item Utilisation d'un sytème de transition
 	  \end{itemize}
 	\end{block}
+	\pause
 	\begin{center}
 	  \includegraphics[width=7cm]{images/pvDiagramParseur.png}	 
 	\end{center}
@@ -267,6 +282,7 @@ Un peu de texte
 \section{Résultats}
 \begin{frame}
 	\frametitle{Résultats}
+	\pause
 	\begin{block}{Débugger}
 	 Le modèle d'automate permet une vérification à la volée dans le parseur.
 	\end{block}
@@ -298,30 +314,30 @@ Un peu de texte
 \section{Conclusion}
 \begin{frame}
  \frametitle{Conclusion}
- 
+ \pause
  \begin{block}{Observation}
   Des outils mathématiques très abordables.
  \end{block}
-
+ \pause  
  \begin{block}{Difficultés rencontrées}
   
  \end{block}
- 
+ \pause
  \begin{block}{Outils acquis}
   \begin{itemize}
    \item Utilisation d'un automate fini.
-   \item Langage XML
+   \item Fonctionnement d'un langage de balisage.
    \item Structure d'arbre
   \end{itemize}
  \end{block}
- 
+
 \end{frame}
 
 
 \begin{frame}
 	\frametitle{Conclusion}
 	\begin{center}
-	 le XML c'est génial sauf le vendredi.
+	 le XML c'est génial, sauf le vendredi.
 	\end{center}
 \end{frame}
 
