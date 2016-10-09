@@ -36,7 +36,7 @@ public class SchemaInterpreter {
         schema.addConstraint(questionConstraint);
 
         Constraint answerConstraint = new Constraint("ANSWER");
-        answerConstraint.addChild(new Child("VALIID", true));
+        answerConstraint.addChild(new Child("VALID", true));
         schema.addConstraint(answerConstraint);
 
         Constraint validConstraint = new Constraint("VALID");

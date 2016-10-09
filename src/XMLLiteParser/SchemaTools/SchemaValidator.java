@@ -26,17 +26,27 @@ public class SchemaValidator {
 
             while (nodeEnum.hasMoreElements()) {
                 Node node = (Node) nodeEnum.nextElement();
-                Child child = c.getChild(node.getName());
-
-                if (children.remove(child)) {
-                    if (requiredChildren.contains(child)) {
-                        requiredChildren.remove(child);
+                boolean found = false;
+                Child toRemove = null;
+                for (Child child : children) {
+                    if (child.getName().equals(node.getName())) {
+                        if (requiredChildren.contains(child)) {
+                            requiredChildren.remove(child);
+                        }
+                        toRemove = child;
+                        found = true;
+                        break;
                     }
-                } else {
+                }
+                if(found)
+                    children.remove(toRemove);
+                else{
+                    System.out.println("pas dans la liste : " + node.toString());
                     res = false;
                 }
             }
             if (!requiredChildren.isEmpty()) {
+                System.out.println("On a pas eu tout les enfants requiered : " + rootNode.toString());
                 res = false;
             }
         }
