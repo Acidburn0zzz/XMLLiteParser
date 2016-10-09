@@ -228,6 +228,69 @@ Enfin, ce modèle mathématique avec une implémantation et un débuggage relativeme
 	\item [F] Final
 \end{description}
 
+\subsection{Automate de validation du fichier DTD}
+
+\subsubsection{Schéma}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[initial,state] (A)                    	{$I$};
+  \node[state]         (B) [right of=A] 	{$OT$};
+  \node[state]         (C) [right of=B] 	{$FS$};
+  \node[state]         (D) [right of=C] 	{$TN$};
+  \node[state]         (E) [right of=D]		{$SS$};
+  \node[state]         (F) [below of=E]		{$OP$};
+  \node[state]         (G) [below of=F]		{$CN$};
+  \node[state]         (H) [below left of=G]	{$CC$};
+  \node[state]         (I) [below right of=H]	{$NCP$};
+  \node[state]         (J) [above right of=I]	{$CS$};
+  \node[state]         (K) [below left of=F]	{$CP$};
+  \node[state]         (L) [left of=K]		{$CT$};
+  \node[state]         (M) [below left of=L]	{$F$};
+
+  \path (A) edge		node {<!ELEMENT} (B)
+        (B) edge		node {space} (C)
+        (C) edge		node {char} (D)
+        (D) edge [loop above]	node {char} (D)
+            edge		node {space} (E)
+            edge [bend left]	node {(} (F)
+        (E) edge 		node {(} (F)
+	(F) edge 		node {char} (G)
+	    edge [bend left]	node {)} (K)
+	(G) edge [loop right]	node {char} (G)
+	    edge [bend right]	node {+} (H)
+	    edge [bend right]	node {,} (I)
+	    edge		node {)} (K)
+	(H) edge [bend right]	node {,} (I)
+	    edge		node {)} (K)
+	(I) edge [bend right]	node {space} (J)
+	    edge [bend right]	node {char} (G)
+	(J) edge [bend right]	node {char} (G)
+	(K) edge		node {>} (L)
+	(L) edge [bend left]	node {<!ELEMENT} (B)
+	    edge 		node {EOF} (M);   
+	    
+\end{tikzpicture}
+
+\subsubsection{Description des états}
+
+\begin{description}
+	\item [I] Initial
+	\item [OT] Opening Tag
+	\item [FS] First Space
+	\item [TN] Tag Name
+	\item [SS] Second Space
+	\item [OP] Opening Parenthesis
+	\item [CN] Child Name
+	\item [NCP] Next Child Point
+	\item [CS] Child Space
+	\item [CP] Closing Parenthesis
+	\item [CT] Closing Tag
+	\item [F] Final
+\end{description}
+
 
 \section{Prolongements possibles}
 
