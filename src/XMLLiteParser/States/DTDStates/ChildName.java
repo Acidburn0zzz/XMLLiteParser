@@ -8,11 +8,21 @@ import XMLLiteParser.States.State;
 public class ChildName implements State {
     @Override
     public State transition(char c) {
-
+        if (String.valueOf(c).matches("[a-zA-Z]") || c == '_' || c == '-'){
+            return new ChildName();
+        }else if(c == '+'){
+            return new CompulsoryChildren();
+        }else if(c == ','){
+            return new NextChildrenPoint();
+        }else if(c == ')'){
+            return new ClosingParenthesis();
+        }else{
+            return new Error();
+        }
     }
 
     @Override
     public boolean isFinal() {
-
+        return false;
     }
 }

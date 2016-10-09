@@ -8,11 +8,15 @@ import XMLLiteParser.States.State;
 public class LetterN implements State {
     @Override
     public State transition(char c) {
-
+        if (c == 'T'){
+            return new LetterT();
+        }else{
+            return new Error();
+        }
     }
 
     @Override
     public boolean isFinal() {
-
+        return false;
     }
 }

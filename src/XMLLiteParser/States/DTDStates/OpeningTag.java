@@ -8,11 +8,15 @@ import XMLLiteParser.States.State;
 public class OpeningTag implements State {
     @Override
     public State transition(char c) {
-
+        if (c != '!'){
+            return new Error();
+        }else{
+            return new ExclamationPoint();
+        }
     }
 
     @Override
     public boolean isFinal() {
-
+        return false;
     }
 }

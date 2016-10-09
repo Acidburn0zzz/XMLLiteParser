@@ -5,11 +5,16 @@ import XMLLiteParser.States.State;
 /**
  * Created by Mathis on 09/10/2016.
  */
-public class FirstSpace implements State {
+public class TagName implements State {
     @Override
     public State transition(char c) {
-        if ( String.valueOf(c).matches("[a-zA-Z]") || c == '_' || c == '-'){
+        if (String.valueOf(c).matches("[a-zA-Z]") || c == '_' || c == '-') {
             return new TagName();
+        }
+        else if(c == ' '){
+            return new SecondSpace();
+        }else if(c == '(') {
+            return new OpeningParenthesis();
         }else{
             return new Error();
         }

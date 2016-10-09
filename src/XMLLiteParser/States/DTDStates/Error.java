@@ -8,11 +8,11 @@ import XMLLiteParser.States.State;
 public class Error implements State {
     @Override
     public State transition(char c) {
-
+        return new Error();
     }
 
     @Override
     public boolean isFinal() {
-
+        return false;
     }
 }

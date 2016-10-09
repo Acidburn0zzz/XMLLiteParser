@@ -8,11 +8,17 @@ import XMLLiteParser.States.State;
 public class CompulsoryChildren implements State {
     @Override
     public State transition(char c) {
-
+        if(c == ','){
+            return new NextChildrenPoint();
+        }else if(c == ')'){
+            return new ClosingParenthesis();
+        }else{
+            return new Error();
+        }
     }
 
     @Override
     public boolean isFinal() {
-
+        return false;
     }
 }

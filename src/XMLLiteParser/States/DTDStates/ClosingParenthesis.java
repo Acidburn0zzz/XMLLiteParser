@@ -8,11 +8,15 @@ import XMLLiteParser.States.State;
 public class ClosingParenthesis implements State {
     @Override
     public State transition(char c) {
-
+        if (c == '>'){
+            return new FinalState();
+        }else{
+            return new Error();
+        }
     }
 
     @Override
     public boolean isFinal() {
-
+        return false;
     }
 }

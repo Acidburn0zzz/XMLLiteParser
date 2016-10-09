@@ -8,11 +8,15 @@ import XMLLiteParser.States.State;
 public class SecondSpace implements State {
     @Override
     public State transition(char c) {
-
+        if (c == '('){
+            return new OpeningParenthesis();
+        }else{
+            return new Error();
+        }
     }
 
     @Override
     public boolean isFinal() {
-
+        return false;
     }
 }
