@@ -105,6 +105,7 @@ Un peu de texte
 Le parseur / validateur doit être capable de lire n'importe quel fichier XML-Lite mais doit aussi être en mesure d'attendre une certaine structure de document grâce à l'ajout d'un fichier .dtd appelé schéma.
 Grâce aux fichiers schéma, le parseur / validateur connais avec plus de finesse les balises filles autorisées ou non pour chaque balises. C'est une sorte de modèle qui permettra la validation du fichier XML-Lite.
 
+\newpage
 \section{Journal de bord}
 
 \subsection{Séance 1}
@@ -161,6 +162,7 @@ Lors de la séance 4, nous avons dû faire face à une erreur n’arrivant uniquement
 \paragraph{}
 Nous avons pensé que ce problème provenait sans doute de notre classe qui lit les fichiers. Pour vérifier son fonctionnement, nous avons donc essayé de lire le fichier et de réécrire son contenu directement dans une copie. Et il est apparu qu’en effet, notre lecteur rajoutait des mauvais caractères en fin de fichier. Ceci a cause d’un buffer mal géré. Nous avons donc réécrit la classe de lecture des fichiers caractère par caractère avec des objets mieux adaptés.
 
+\newpage
 \section{Choix du modèle mathématique}
 
 \subsection{Le modèle mathématique}
@@ -226,6 +228,7 @@ Enfin, ce modèle mathématique avec une implémantation et un débuggage relativeme
 	\item [F] Final
 \end{description}
 
+\newpage
 \subsection{Automate de validation du fichier DTD}
 Afin d'utiliser un fichier DTD, nous devons vérifier ce fichier DTD. Nous avons ainsi implémenter un automate fini pour vérifier la 
 structure du schéma. 
@@ -291,22 +294,30 @@ structure du schéma.
 	\item [F] Final
 \end{description}
 
-
+\newpage
 \section{Prolongements possibles}
 
 \subsection{Permettre le débuggage du fichier XML.}
+Le modèle d'automate permet une vérification à la volée dans le parseur.
 
 \subsection{Permettre au validateur de s'accorder à un schéma prédéfini.}
+Validation de la structure en fonction de contraintes sur l'arbre.
 
 \subsection{Modifier le validateur afin qu'il prenne en compte un schéma.}
 
 \subsection{Ajouter un interpréteur suivant le schéma d'un générateur de QCM.}
+Création des contraintes qui constituent le schéma en fonction d'un document DTD. Implémentation d'un deuxième automate fini.
 
 
 \section{Conclusion}
-Ce projet aura été d'une grande expérience pour notre groupe. La création d'un outil permettant de parser et valider des documents XML-Lite tout en s'accordant sur un schéma prédéfini ou non nous a permis tout comme nous l'esperions au commencement de ce projet de découvrir les principes de base du XML mais également l'implémentation et la gestion d'un automate fini.
+Ce projet aura été d'une grande expérience pour notre groupe. La création d'un outil permettant de parser et valider des 
+documents XML-Lite tout en s'accordant sur un schéma prédéfini ou non nous a permis tout comme nous l'esperions au commencement 
+de ce projet de découvrir les principes de base du XML mais également l'implémentation et la gestion d'un automate fini.
 En effet, 
 
+
+
+\newpage
 \section{Comment ajouter du code ?}
 
 \subsection{Comme ça}
