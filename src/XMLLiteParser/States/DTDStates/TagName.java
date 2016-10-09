@@ -9,7 +9,7 @@ public class TagName implements State {
     @Override
     public State transition(char c) {
         if (String.valueOf(c).matches("[a-zA-Z]") || c == '_' || c == '-') {
-            return new TagName();
+            return this;
         }
         else if(c == ' '){
             return new SecondSpace();
