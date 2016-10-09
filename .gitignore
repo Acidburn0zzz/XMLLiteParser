@@ -26,3 +26,5 @@ Rapport/*.mtc
 Rapport/*.mtc1
 Rapport/*.out
 Rapport/*.synctex.gz
+*.MF
+*.synctex
