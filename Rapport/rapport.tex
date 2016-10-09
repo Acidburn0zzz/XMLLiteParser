@@ -16,6 +16,7 @@
 \definecolor{mygray}{rgb}{0.5,0.5,0.5}
 \definecolor{mymauve}{rgb}{1,0,0}
 
+
 \lstset{ %
   backgroundcolor=\color{white},   % choose the background color
   basicstyle=\footnotesize,        % size of fonts used for the code
@@ -57,7 +58,6 @@
 \maketitle
 
 \section{Descriptif du sujet}
-
 Un parseur / validateur XML-Lite est un programme capable de lire un fichier, d’indiquer s’il vérifie la norme XML-Lite et si oui, de l’analyser et de retenir sa structure ainsi que son contenu.
 Pour nous permettre de concevoir un programme réalisable, notre parseur / validateur opère sur un langage simplifié de XML, le XML-Lite conçu pour faciliter l'utilisation, les performances ainsi que les normes de conformité (XML 1.0).
 
@@ -169,7 +169,15 @@ alors qu’elles n’existaient pas…
 \paragraph{}
 Nous avons pensé que ce problème provenait sans doute de notre classe qui lit les fichiers. Pour vérifier son fonctionnement, nous avons donc essayé de lire le fichier et de réécrire son contenu directement dans une copie. Et il est apparu qu’en effet, notre lecteur rajoutait des mauvais caractères en fin de fichier. Ceci a cause d’un buffer mal géré. Nous avons donc réécrit la classe de lecture des fichiers caractère par caractère avec des objets mieux adaptés.
 
-\newpage
+\subsection{Temps personnel}
+Nous avons réalisé les prolongements concernant la vérification de structure d’un document, la définition de cette structure dans un fichier (DTD) et l’interprétation d’un fichier XML.
+\paragraph{}
+Nous avons d’abord réalisé les objets représentants les contraintes. La première « contrainte » sert à représenter une contrainte (enfant autorisé, obligatoire) sur un nom de balise donnée.
+\paragraph{}
+Puis en implémentant un deuxième automate fini, mais cette fois-ci avec la syntaxe d’un DTD-Lite. Nous avons construit les contraintes à partir d’un fichier externe de la même manière que nous le faisions dans l’automate pour valider le XML. Mais cette fois-ci au lieu de construire un arbre, on construit un ensemble de contraintes qui définissent un schéma.
+\paragraph{}
+Nous avons ensuite construit un algorithme (récursif) qui s’occupe de parcourir l’arbre, et s’il trouve une balise qui porte un nom ayant une contrainte dans le schéma, de vérifier si ses balises filles respectent la dite contrainte.
+
 \section{Choix du modèle mathématique}
 
 \subsection{Le modèle mathématique}
@@ -297,40 +305,11 @@ structure du schéma.
 	\item [F] Final
 \end{description}
 
-\newpage
-\section{Prolongements possibles}
-
-\subsection{Permettre le débuggage du fichier XML.} %Quel impact cette modification a eu sur la structure mathématique utilisée ?
-Le modèle d'automate permet une vérification à la volée dans le parseur.
-
-\subsection{Permettre au validateur de s'accorder à un schéma prédéfini.}%Quel impact cette modification a eu sur la structure mathématique utilisée ?
-Validation de la structure en fonction de contraintes sur l'arbre.
-
-
 \section{Conclusion}
-
-
-
+\subsection{Les outils acquis}
+\subsection{Les difficultés rencontrées}
 
 \newpage
-\section{Comment ajouter du code ?}
-
-\subsection{Comme ça}
-
-\lstinputlisting[language=java, firstline=1, lastline=45]{../src/XMLLiteParser/main.java}
-
-\subsection{Ou comme ça}
-yolo
-
-\begin{lstlisting}[language=java]
-class HelloWorldApp {
-    public static void main(String[] args) {
-        System.out.println("Hello World!"); // Display the string.
-        for (int i = 0; i < 100; ++i) {
-            System.out.println(i);
-        }
-    }
-}
-\end{lstlisting}
-
+\renewcommand{\contentsname}{Sommaire}
+\tableofcontents
 \end{document}
