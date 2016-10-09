@@ -37,30 +37,30 @@
 \headcommand {\beamer@framepages {13}{13}}
 \headcommand {\slideentry {2}{2}{2}{14/14}{Repr\'esentation de l'automate fini}{0}}
 \headcommand {\beamer@framepages {14}{14}}
-\headcommand {\sectionentry {3}{R\'esultats}{15}{R\'esultats}{0}}
+\headcommand {\sectionentry {3}{Pr\'esentation du programme}{15}{Pr\'esentation du programme}{0}}
 \headcommand {\beamer@sectionpages {9}{14}}
 \headcommand {\beamer@subsectionpages {13}{14}}
 \headcommand {\slideentry {3}{0}{1}{15/15}{}{0}}
 \headcommand {\beamer@framepages {15}{15}}
-\headcommand {\slideentry {3}{0}{2}{16/16}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{1}{16}{Le parseur}}\headcommand {\beamer@subsectionpages {15}{15}}
+\headcommand {\slideentry {3}{1}{1}{16/16}{Le parseur}{0}}
 \headcommand {\beamer@framepages {16}{16}}
-\headcommand {\sectionentry {4}{Pr\'esentation du programme}{17}{Pr\'esentation du programme}{0}}
-\headcommand {\beamer@sectionpages {15}{16}}
-\headcommand {\beamer@subsectionpages {15}{16}}
-\headcommand {\slideentry {4}{0}{1}{17/17}{}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{2}{17}{Le validateur}}\headcommand {\beamer@subsectionpages {16}{16}}
+\headcommand {\slideentry {3}{2}{1}{17/17}{Le validateur}{0}}
 \headcommand {\beamer@framepages {17}{17}}
-\headcommand {\beamer@subsectionentry {0}{4}{1}{18}{Le parseur}}\headcommand {\beamer@subsectionpages {17}{17}}
-\headcommand {\slideentry {4}{1}{1}{18/18}{Le parseur}{0}}
+\headcommand {\beamer@subsectionentry {0}{3}{3}{18}{L'interpr\'eteur}}\headcommand {\beamer@subsectionpages {17}{17}}
+\headcommand {\slideentry {3}{3}{1}{18/18}{L'interpr\'eteur}{0}}
 \headcommand {\beamer@framepages {18}{18}}
-\headcommand {\beamer@subsectionentry {0}{4}{2}{19}{Le validateur}}\headcommand {\beamer@subsectionpages {18}{18}}
-\headcommand {\slideentry {4}{2}{1}{19/19}{Le validateur}{0}}
+\headcommand {\sectionentry {4}{R\'esultats}{19}{R\'esultats}{0}}
+\headcommand {\beamer@sectionpages {15}{18}}
+\headcommand {\beamer@subsectionpages {18}{18}}
+\headcommand {\slideentry {4}{0}{1}{19/19}{}{0}}
 \headcommand {\beamer@framepages {19}{19}}
-\headcommand {\beamer@subsectionentry {0}{4}{3}{20}{L'interpr\'eteur}}\headcommand {\beamer@subsectionpages {19}{19}}
-\headcommand {\slideentry {4}{3}{1}{20/20}{L'interpr\'eteur}{0}}
+\headcommand {\slideentry {4}{0}{2}{20/20}{}{0}}
 \headcommand {\beamer@framepages {20}{20}}
 \headcommand {\sectionentry {5}{Conclusion}{21}{Conclusion}{0}}
-\headcommand {\beamer@sectionpages {17}{20}}
-\headcommand {\beamer@subsectionpages {20}{20}}
+\headcommand {\beamer@sectionpages {19}{20}}
+\headcommand {\beamer@subsectionpages {19}{20}}
 \headcommand {\slideentry {5}{0}{1}{21/21}{}{0}}
 \headcommand {\beamer@framepages {21}{21}}
 \headcommand {\slideentry {5}{0}{2}{22/22}{}{0}}
