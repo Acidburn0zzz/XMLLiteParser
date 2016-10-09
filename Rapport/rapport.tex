@@ -157,11 +157,9 @@ Après avoir implémenté le parseur en structure d'arbre lors de la séance 2, nous
 L'implémentation de la classe JTree nous permet alors de représenter visuellement la structure du fichier XML-Lite analysé formaté en structure d'arbre.
 
 \subsection{Séance 4}
-Lors de la séance 4, nous avons du faire face à une erreur n'arrivant uniquement lors de la lecture de gros fichiers.
-
+Lors de la séance 4, nous avons dû faire face à une erreur n’arrivant uniquement lors de la lecture de gros fichiers. En effet, la validation de ces fichiers posait problème pour les dernières balises, le Parser rajoutait des balises filles au root node, à la fin, alors qu’elles n’existaient pas…
 \paragraph{}
-La bite.
-
+Nous avons pensé que ce problème provenait sans doute de notre classe qui lit les fichiers. Pour vérifier son fonctionnement, nous avons donc essayé de lire le fichier et de réécrire son contenu directement dans une copie. Et il est apparu qu’en effet, notre lecteur rajoutait des mauvais caractères en fin de fichier. Ceci a cause d’un buffer mal géré. Nous avons donc réécrit la classe de lecture des fichiers caractère par caractère avec des objets mieux adaptés.
 
 \section{Choix du modèle mathématique}
 
@@ -225,6 +223,71 @@ Enfin, ce modèle mathématique avec une implémantation et un débuggage relativeme
 	\item [NCT] New Closing Tag
 	\item [CTN] Colsing Tag Name
 	\item [ECT] End Closing Tag
+	\item [F] Final
+\end{description}
+
+\subsection{Automate de validation du fichier DTD}
+Afin d'utiliser un fichier DTD, nous devons vérifier ce fichier DTD. Nous avons ainsi implémenter un automate fini pour vérifier la 
+structure du schéma. 
+
+\subsubsection{Schéma}
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[initial,state] (A)                    	{$I$};
+  \node[state]         (B) [right of=A] 	{$OT$};
+  \node[state]         (C) [right of=B] 	{$FS$};
+  \node[state]         (D) [right of=C] 	{$TN$};
+  \node[state]         (E) [right of=D]		{$SS$};
+  \node[state]         (F) [below of=E]		{$OP$};
+  \node[state]         (G) [below of=F]		{$CN$};
+  \node[state]         (H) [below left of=G]	{$CC$};
+  \node[state]         (I) [below right of=H]	{$NCP$};
+  \node[state]         (J) [above right of=I]	{$CS$};
+  \node[state]         (K) [below left of=F]	{$CP$};
+  \node[state]         (L) [left of=K]		{$CT$};
+  \node[state]         (M) [below left of=L]	{$F$};
+
+  \path (A) edge		node {<!ELEMENT} (B)
+        (B) edge		node {space} (C)
+        (C) edge		node {char} (D)
+        (D) edge [loop above]	node {char} (D)
+            edge		node {space} (E)
+            edge [bend left]	node {(} (F)
+        (E) edge 		node {(} (F)
+	(F) edge 		node {char} (G)
+	    edge [bend left]	node {)} (K)
+	(G) edge [loop right]	node {char} (G)
+	    edge [bend right]	node {+} (H)
+	    edge [bend right]	node {,} (I)
+	    edge		node {)} (K)
+	(H) edge [bend right]	node {,} (I)
+	    edge		node {)} (K)
+	(I) edge [bend right]	node {space} (J)
+	    edge [bend right]	node {char} (G)
+	(J) edge [bend right]	node {char} (G)
+	(K) edge		node {>} (L)
+	(L) edge [bend left]	node {<!ELEMENT} (B)
+	    edge 		node {EOF} (M);   
+	    
+\end{tikzpicture}
+
+\subsubsection{Description des états}
+
+\begin{description}
+	\item [I] Initial
+	\item [OT] Opening Tag
+	\item [FS] First Space
+	\item [TN] Tag Name
+	\item [SS] Second Space
+	\item [OP] Opening Parenthesis
+	\item [CN] Child Name
+	\item [NCP] Next Child Point
+	\item [CS] Child Space
+	\item [CP] Closing Parenthesis
+	\item [CT] Closing Tag
 	\item [F] Final
 \end{description}
 
