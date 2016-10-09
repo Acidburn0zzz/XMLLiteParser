@@ -9,7 +9,7 @@ public class ClosingParenthesis implements State {
     @Override
     public State transition(char c) {
         if (c == '>'){
-            return new FinalState();
+            return new ClosingTag();
         }else{
             return new Error();
         }
