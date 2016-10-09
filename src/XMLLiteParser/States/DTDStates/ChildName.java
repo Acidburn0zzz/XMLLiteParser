@@ -9,7 +9,7 @@ public class ChildName implements State {
     @Override
     public State transition(char c) {
         if (String.valueOf(c).matches("[a-zA-Z]") || c == '_' || c == '-'){
-            return new ChildName();
+            return this;
         }else if(c == '+'){
             return new CompulsoryChildren();
         }else if(c == ','){
