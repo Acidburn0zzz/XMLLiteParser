@@ -152,13 +152,17 @@ Puis, nous avons réfléchis à la structure mathématique du pasreur, nous sommes v
 Il a également fallu implémenter un buffer afin de stocker caractère par caractère les informations provenant des états du validateur.
 
 \subsection{Séance 3}
-Après avoir implémenté le parseur en structure d'arbre lors de la séance 2, nous avons pu interfacer une IHM basée sur les noeuds et feuilles de l'arbre nous permettant de faire une représentation claire et précise du fonctionnement du parseur / validateur qui nous serivra principalement lors de la présentation de projet.
+Après avoir implémenté le parseur en structure d'arbre lors de la séance 2, nous avons pu interfacer une IHM basée sur les noeuds et feuilles de 
+l'arbre nous permettant de faire une représentation claire et précise du fonctionnement du parseur / validateur qui nous serivra principalement 
+lors de la présentation de projet.
 
 \paragraph{}
 L'implémentation de la classe JTree nous permet alors de représenter visuellement la structure du fichier XML-Lite analysé formaté en structure d'arbre.
 
 \subsection{Séance 4}
-Lors de la séance 4, nous avons dû faire face à une erreur n’arrivant uniquement lors de la lecture de gros fichiers. En effet, la validation de ces fichiers posait problème pour les dernières balises, le Parser rajoutait des balises filles au root node, à la fin, alors qu’elles n’existaient pas…
+Lors de la séance 4, nous avons dû faire face à une erreur n’arrivant uniquement lors de la lecture de gros fichiers. En effet, 
+la validation de ces fichiers posait problème pour les dernières balises, le Parser rajoutait des balises filles au root node, à la fin, 
+alors qu’elles n’existaient pas…
 \paragraph{}
 Nous avons pensé que ce problème provenait sans doute de notre classe qui lit les fichiers. Pour vérifier son fonctionnement, nous avons donc essayé de lire le fichier et de réécrire son contenu directement dans une copie. Et il est apparu qu’en effet, notre lecteur rajoutait des mauvais caractères en fin de fichier. Ceci a cause d’un buffer mal géré. Nous avons donc réécrit la classe de lecture des fichiers caractère par caractère avec des objets mieux adaptés.
 
@@ -166,16 +170,12 @@ Nous avons pensé que ce problème provenait sans doute de notre classe qui lit le
 \section{Choix du modèle mathématique}
 
 \subsection{Le modèle mathématique}
-Pour nous permettre de parcourir rapidement un fichier XML-Lite, nous avons opté pour le développement d’un automate fini.
+La principale contrainte du validateur était de permettre la correspondance au modèle syntaxique du fichier XML-Lite.\\
+Pour nous permettre de parcourir rapidement un fichier XML-Lite caractère par caractère, nous avons opté pour le développement d’un automate fini.
 
 \paragraph{}
-Tout d’abord puisque grâce à la simplicité et la rigidité du langage XML-Lite, il y a très peu d’états différents lors de la lecture d’un fichier. De plus, les transitions entre états se font uniquement grâce à la différenciation des caractères ‘<’, ‘>’, ‘/’ et le reste.
-
-\paragraph{}
-Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide (exécution en 13ms pour un fichier XML-Lite de près de 700Mo).
-
-\paragraph{}
-Enfin, ce modèle mathématique avec une implémantation et un débuggage relativement simple permet également une amélioration facile du programme grâce à la différenciation de tous les états dans différentes classes.
+Enfin, ce modèle mathématique avec une implémantation et un débuggage relativement simple permet également une amélioration facile du programme
+grâce à la différenciation de tous les états dans différentes classes.
 
 \subsection{Représentation de l'automate fini}
 
@@ -297,16 +297,11 @@ structure du schéma.
 \newpage
 \section{Prolongements possibles}
 
-\subsection{Permettre le débuggage du fichier XML.}
+\subsection{Permettre le débuggage du fichier XML.} %Quel impact cette modification a eu sur la structure mathématique utilisée ?
 Le modèle d'automate permet une vérification à la volée dans le parseur.
 
-\subsection{Permettre au validateur de s'accorder à un schéma prédéfini.}
+\subsection{Permettre au validateur de s'accorder à un schéma prédéfini.}%Quel impact cette modification a eu sur la structure mathématique utilisée ?
 Validation de la structure en fonction de contraintes sur l'arbre.
-
-\subsection{Modifier le validateur afin qu'il prenne en compte un schéma.}
-
-\subsection{Ajouter un interpréteur suivant le schéma d'un générateur de QCM.}
-Création des contraintes qui constituent le schéma en fonction d'un document DTD. Implémentation d'un deuxième automate fini.
 
 
 \section{Conclusion}
