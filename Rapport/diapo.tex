@@ -68,12 +68,11 @@
 \begin{frame}
 	\frametitle{Le sujet}
 	\begin{block}{Le XML-Lite}
-	 Le XML est un langage de balisage générique très utilisé en informatique. Nous utiliserons une version simplifiée : le XML-Lite.
+	 Le XML est un langage balisé. Nous utiliserons une version simplifiée : le XML-Lite.
 	\end{block}
 	\begin{block}{Descriptif}
-	Comme cité dans le sujet, un parseur / validateur XML-Lite est un programme capable de lire un fichier, 
-	d'indiquer s'il vérifie la norme XML-Lite et si oui, de l'analyser et de retenir sa structure ainsi que son contenu.\\
-	Le programme devra également être capable de vérifier si la structure d'un document donné vérifie une structure présente dans un Document appelé DTD.
+	Un parseur / validateur XML-Lite est un programme capable de lire un fichier, 
+	d'indiquer s'il vérifie la norme XML-Lite et si oui, de l'analyser et de retenir sa structure ainsi que son contenu.
 	\end{block}
 \end{frame}
 
@@ -134,10 +133,10 @@
 
 \end{frame}
 
-\subsubsection{XML-Lite faux}
+\subsubsection{XML-Lite invalide}
 \begin{frame}[fragile]
 \frametitle{Exemples de XML-Lite}
-\begin{block}{XML-Lite faux}
+\begin{block}{XML-Lite invalide}
 \begin{lstlisting}
   <FirstTag>
       <SecondTag>
@@ -159,38 +158,25 @@ Un peu de texte
 \end{frame}
 
 
-\subsection{La structure du document}
-\begin{frame}
-	\frametitle{La structure du document}
-	\begin{block}{Descriptif}
-		Le parseur / validateur doit être capable de lire n'importe quel fichier XML-Lite mais doit aussi être en mesure d'attendre une certaine structure de document grâce à l'ajout d'un fichier .dtd appelé schéma.
-		Grâce aux fichiers schéma, le parseur / validateur connais avec plus de finesse les balises filles autorisées ou non pour chaque balises. C'est une sorte de modèle qui permettra la validation du fichier XML-Lite.
-	\end{block}
-\end{frame}
-
-
 \section{Modèle mathématique}
 \subsection{Choix du modèle mathématique}
+
 \begin{frame}
-	\frametitle{Choix du modèle mathématique}
-	\begin{block}{Un automate fini}
-		Pour nous permettre de parcourir rapidement un fichier XML-Lite, nous avons opté pour le développement d'un automate fini.
-	\end{block}
-	
-	\pause
-	
-	\begin{block}{Simplicité et rigidité}
-		Très peu d’états différents lors de la lecture d’un fichier XML-Lite. 
-		Les transitions entre états se font uniquement grâce à la différenciation des 
-		caractères ‘<’, ‘>’, ‘/’ avec le reste.
-	\end{block}
-	
-	\pause
-	
-	\begin{block}{Efficacité}
-		Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide 
-		(exécution en 13ms pour un fichier XML de près de 700Mo).
-	\end{block}
+ \frametitle{Automate fini}
+ \begin{block}{Contrainte du validateur}
+  Correspondance au modèle syntaxique du fichier XML-Lite.
+ \end{block}
+ 
+ \pause
+ 
+ \begin{block}{Solution}
+  L'automate fini nous permet :
+  \begin{itemize}
+   \item Une analyse du document caractère par caractère.
+   \item Une implémentation simple et rapide.
+   \item Un débuggage simplifié.
+  \end{itemize}
+ \end{block}
 \end{frame}
 
 \subsection{Représentation de l'automate fini}
@@ -247,64 +233,79 @@ Un peu de texte
 	\end{block}
 \end{frame}
 
-
+\subsection{Un arbre...}
+\begin{frame}
+ \frametitle{Un arbre...}
+ \begin{block}{Contraintes}
+ Représenter la structure d'un document XML-Lite.
+ \end{block}
+ \begin{block}{Solution}
+  Un document XML ayant déjà une structure d'arbre, c'est pourquoi nous avons adopter une structure d'arbre pour la représentation.
+ \end{block}
+ \begin{center}
+    \includegraphics[width=5cm]{images/compositeUML.png}
+ \end{center}
+\end{frame}
 
 
 \section{Présentation du programme}
-\subsection{Le parseur}
+\subsection{Le parseur / validateur}
 \begin{frame}
-	\frametitle{Le parseur} 
-	\begin{block}{Parseur}
-	 %\lstinputlisting[language=java, firstline=18, lastline=26]{../src/XMLLiteParser/main.java}
-	  La fonction parseur du programme doit permettre la lecture du document XML. C'est grâce à l'automate fini que l'on parcourt 
-	  le fichier caractère par caractère. Lors de la lecture des caractères, le parseur va appeller des méthodes du validateur 
-	  pour valider le document au fur et à mesure de la lecture.
+	\frametitle{Le parseur / validateur} 
+	\begin{block}{Définition}
+	  \begin{itemize}
+	    \item Analyse syntaxique d'un document
+	    \item Utilisation d'un sytème de transition
+	  \end{itemize}
 	\end{block}
-
-\end{frame}
-
-\subsection{Le validateur}
-\begin{frame}
-	\frametitle{Le validateur}
-	\begin{block}{Validateur}
-	 %\lstinputlisting[language=java, firstline=27, lastline=33]{../src/XMLLiteParser/main.java}
-	 Le validateur est ici pour rechercher les erreurs de syntaxe en fonction de ce qu'il reçoit du parseur.
-	 
-	\end{block}
-\end{frame}
-
-\subsection{L'interpréteur}
-\begin{frame}
-	\frametitle{L'interpréteur}
-	\begin{block}{Interpréteur}
-	 %\lstinputlisting[language=java, firstline=34, lastline=45]{../src/XMLLiteParser/main.java}
-	 L'interpréteur aura pour fonction de lire un fichier XML basé sur un schéma DTD avec pour exemple, les données d'un générateur 
-	 de QCM comportant 1 à 5 réponses correctes ou non pour chaque question. Il devra introduire ces données dans des classes crées 
-	 précédement.
-	\end{block}
+	\begin{center}
+	  \includegraphics[width=7cm]{images/pvDiagramParseur.png}	 
+	\end{center}
 \end{frame}
 
 
 \section{Résultats}
 \begin{frame}
 	\frametitle{Résultats}
+	\begin{block}{Débugger}
+	 Le modèle d'automate permet une vérification à la volée dans le parseur.
+	\end{block}
+	\pause
+	\begin{block}{Schéma}
+	 Validation de la structure en fonction de contraintes sur l'arbre.
+	\end{block}
+	\pause
+	\begin{block}{Interpréteur de schéma}
+	 Création des contraintes qui constituent le schéma en fonction d'un document DTD.
+	 Implémentation d'un deuxième automate fini.
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+ \frametitle{Résultats}
+ \begin{block}{QCM}
+  \begin{block}{Schéma}
+      \begin{lstlisting}
+<!ELEMENT QUESTION (ANSWER+, ANSWER, ANSWER, ANSWER, ANSWER)>
+<!ELEMENT ANSWER (VALID+)>
+<!ELEMENT VALID ()>
+      \end{lstlisting}
+  \end{block}
+ \end{block}
 \end{frame}
 
 
 \section{Conclusion}
 \begin{frame}
-	\frametitle{Conclusion}
-	\begin{block}{Difficultés rencontrées}
-	 \begin{itemize}
-	  \item yolo
-	 \end{itemize}
-	\end{block}
-	\begin{block}{Outils acquis}
-	 \begin{itemize}
-	  \item yolo
-	 \end{itemize}
+ \frametitle{Conclusion}
+ 
+\end{frame}
 
-	\end{block}
+\begin{frame}
+	\frametitle{Conclusion}
+	\begin{center}
+	 le XML c'est génial sauf le vendredi.
+	\end{center}
 \end{frame}
 
 \begin{frame}

@@ -1,20 +1,10 @@
-\frametitle{Exemples de XML-Lite}
-\begin{block}{XML-Lite faux}
-\begin{lstlisting}
-  <FirstTag>
-      <SecondTag>
-	<EndTag>
-	  <AloneTag>
-	</>
-  </FirstTag>
-  </SecondTag>
-Un peu de texte
-\end{lstlisting}
-\end{block}
-\begin{block}{Raisons}
-\begin{itemize}
- \item Les balises ne sont pas correctement imbriquées.
- \item Une balise n'est pas correctement nommée.
- \item Une balise s'ouvre et ne se referme pas.
-\end{itemize}
-\end{block}
+\frametitle{Résultats}
+ \begin{block}{QCM}
+  \begin{block}{Schéma}
+      \begin{lstlisting}
+<!ELEMENT QUESTION (ANSWER+, ANSWER, ANSWER, ANSWER, ANSWER)>
+<!ELEMENT ANSWER (VALID+)>
+<!ELEMENT VALID ()>
+      \end{lstlisting}
+  \end{block}
+ \end{block}
