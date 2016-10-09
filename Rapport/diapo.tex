@@ -188,7 +188,8 @@ Un peu de texte
 	\pause
 	
 	\begin{block}{Efficacité}
-		Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide (exécution en 13ms pour un fichier XML-Lite de près de 700Mo).
+		Cette façon de parcourir un fichier XML-Lite caractère par caractère s’est avérée très rapide 
+		(exécution en 13ms pour un fichier XML de près de 700Mo).
 	\end{block}
 \end{frame}
 
@@ -255,9 +256,12 @@ Un peu de texte
 \section{Présentation du programme}
 \subsection{Le parseur}
 \begin{frame}
-	\frametitle{Le parseur}
+	\frametitle{Le parseur} 
 	\begin{block}{Parseur}
-	 \lstinputlisting[language=java, firstline=1, lastline=8]{../src/XMLLiteParser/main.java}
+	 %\lstinputlisting[language=java, firstline=18, lastline=26]{../src/XMLLiteParser/main.java}
+	  La fonction parseur du programme doit permettre la lecture du document XML. C'est grâce à l'automate fini que l'on parcourt 
+	  le fichier caractère par caractère. Lors de la lecture des caractères, le parseur va appeller des méthodes du validateur 
+	  pour valider le document au fur et à mesure de la lecture.
 	\end{block}
 
 \end{frame}
@@ -266,7 +270,9 @@ Un peu de texte
 \begin{frame}
 	\frametitle{Le validateur}
 	\begin{block}{Validateur}
-	 \lstinputlisting[language=java, firstline=13, lastline=22]{../src/XMLLiteParser/main.java}
+	 %\lstinputlisting[language=java, firstline=27, lastline=33]{../src/XMLLiteParser/main.java}
+	 Le validateur est ici pour rechercher les erreurs de syntaxe en fonction de ce qu'il reçoit du parseur.
+	 
 	\end{block}
 \end{frame}
 
@@ -274,7 +280,10 @@ Un peu de texte
 \begin{frame}
 	\frametitle{L'interpréteur}
 	\begin{block}{Interpréteur}
-	 \lstinputlisting[language=java, firstline=23, lastline=45]{../src/XMLLiteParser/main.java}
+	 %\lstinputlisting[language=java, firstline=34, lastline=45]{../src/XMLLiteParser/main.java}
+	 L'interpréteur aura pour fonction de lire un fichier XML basé sur un schéma DTD avec pour exemple, les données d'un générateur 
+	 de QCM comportant 1 à 5 réponses correctes ou non pour chaque question. Il devra introduire ces données dans des classes crées 
+	 précédement.
 	\end{block}
 \end{frame}
 	
