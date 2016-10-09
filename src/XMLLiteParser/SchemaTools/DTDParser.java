@@ -26,7 +26,6 @@ public class DTDParser {
         if(buffer.isEmpty())
             throw new EmptyNameException();
 
-        //TODO currentConstraint should be null
         System.out.println("Create constraint : " + buffer);
         currentConstraint = new Constraint(buffer);
 

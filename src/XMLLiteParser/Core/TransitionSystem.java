@@ -13,7 +13,6 @@ import java.io.IOException;
 public class TransitionSystem {
 
     public void parseFile(String path) throws IOException{
-        //TODO Shouldn't the parser return the rootNode and not let the user acces the parser instance ?
         FileReader fileReader = new FileReader(path);
         State currentState = new InitialState();
         char code = fileReader.nextChar();

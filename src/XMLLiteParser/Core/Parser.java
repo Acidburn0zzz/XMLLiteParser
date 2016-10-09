@@ -21,7 +21,6 @@ public class Parser {
     }
 
     public static Parser getInstance() {
-        //TODO This shouldn't be a singleton, what if we try to parse more than one document at the same time ?
         if (instance == null)
             instance = new Parser();
         return instance;

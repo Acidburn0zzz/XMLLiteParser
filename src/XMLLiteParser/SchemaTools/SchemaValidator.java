@@ -41,12 +41,10 @@ public class SchemaValidator {
                 if(found)
                     children.remove(toRemove);
                 else{
-                    System.out.println("pas dans la liste : " + node.toString());
                     res = false;
                 }
             }
             if (!requiredChildren.isEmpty()) {
-                System.out.println("On a pas eu tout les enfants requiered : " + rootNode.toString());
                 res = false;
             }
         }

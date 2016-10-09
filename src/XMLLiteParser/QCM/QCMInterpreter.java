@@ -31,14 +31,14 @@ public class QCMInterpreter {
             for (int j = 0; j < answerCount; j++) {
                 Node answerNode = (Node) questionNode.getChildAt(j);
                 Answer answer;
-                if(((Node)answerNode.getChildAt(0)).getContent().contains("true"))
-                    answer = new Answer(answerNode.getContent(), true);
-                else
-                    answer = new Answer(answerNode.getContent(), false);
-
-                question.addAnswer(answer);
+                if (answerNode.getChildCount() != 0) {
+                    if (((Node) answerNode.getChildAt(0)).getContent().contains("true"))
+                        answer = new Answer(answerNode.getContent(), true);
+                    else
+                        answer = new Answer(answerNode.getContent(), false);
+                    question.addAnswer(answer);
+                }
             }
-
             qcm.addQuestion(question);
         }
 
