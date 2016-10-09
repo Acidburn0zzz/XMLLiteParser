@@ -8,7 +8,7 @@ import XMLLiteParser.States.State;
 public class Error implements State {
     @Override
     public State transition(char c) {
-        return new Error();
+        return this;
     }
 
     @Override
