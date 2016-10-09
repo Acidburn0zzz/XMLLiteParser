@@ -24,14 +24,32 @@ public class SchemaInterpreter {
         SchemaConstructor schemaConstructor = new SchemaConstructor();
         SchemaValidator schemaValidator;
         Schema schema;
+        schema = new Schema();
+
+        Constraint qcmConstraint = new Constraint("QCM");
+        qcmConstraint.addChild(new Child("QUESTION", true));
+        qcmConstraint.addChild(new Child("QUESTION", true));
+        schema.addConstraint(qcmConstraint);
+
+        Constraint questionConstraint = new Constraint("QUESTION");
+        questionConstraint.addChild(new Child("ANSWER", true));
+        schema.addConstraint(questionConstraint);
+
+        Constraint answerConstraint = new Constraint("ANSWER");
+        answerConstraint.addChild(new Child("VALIID", true));
+        schema.addConstraint(answerConstraint);
+
+        Constraint validConstraint = new Constraint("VALID");
+        schema.addConstraint(validConstraint);
+
         boolean res = false;
 
         try {
-            schema = schemaConstructor.createSchema(path);
+            //schema = schemaConstructor.createSchema(path);
             schemaValidator = new SchemaValidator(schema);
             res = schemaValidator.isValid(rootNode);
             //TODO maybe should we create convenience method for the validator ?
-        } catch (InvalidDocumentException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

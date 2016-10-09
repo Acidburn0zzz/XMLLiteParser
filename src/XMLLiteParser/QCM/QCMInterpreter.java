@@ -16,7 +16,7 @@ public class QCMInterpreter {
      * @throws InvalidDocumentException if the tree doesn't respect a QCM schema
      */
     public QCM interpreteTree(Node rootNode) throws InvalidDocumentException, IOException {
-        QCM qcm = null;
+        QCM qcm = new QCM();
         SchemaInterpreter schemaInterpreter = SchemaInterpreter.getInstance();
 
         if(!schemaInterpreter.validateTree(rootNode, "XMLDocs\\QCM.dtd"))
@@ -31,7 +31,7 @@ public class QCMInterpreter {
             for (int j = 0; j < answerCount; j++) {
                 Node answerNode = (Node) questionNode.getChildAt(j);
                 Answer answer;
-                if(((Node)answerNode.getChildAt(0)).getContent().equals("true"))
+                if(((Node)answerNode.getChildAt(0)).getContent().contains("true"))
                     answer = new Answer(answerNode.getContent(), true);
                 else
                     answer = new Answer(answerNode.getContent(), false);

@@ -4,6 +4,8 @@ import XMLLiteParser.Core.Node;
 import XMLLiteParser.Core.Parser;
 import XMLLiteParser.Core.TransitionSystem;
 import XMLLiteParser.Gui.TreeView;
+import XMLLiteParser.QCM.QCM;
+import XMLLiteParser.QCM.QCMInterpreter;
 import XMLLiteParser.SchemaTools.SchemaInterpreter;
 
 import javax.swing.tree.DefaultTreeModel;
@@ -25,13 +27,13 @@ public class main {
         Node rootNode = null;
 
         try {
-            ts.parseFile("XMLDocs\\Ok.xmll");
+            ts.parseFile("XMLDocs\\QCM.xmll");
             rootNode = Parser.getInstance().getRootNode();
 
-            SchemaInterpreter schemaInterpreter = SchemaInterpreter.getInstance();
-            schemaInterpreter.validateTree(rootNode, "XMLDocs\\QCM.dtd");
-
-        } catch (IOException e) {
+            QCMInterpreter qcmInterpreter = new QCMInterpreter();
+            QCM qcm = qcmInterpreter.interpreteTree(rootNode);
+            System.out.println("WOW");
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 

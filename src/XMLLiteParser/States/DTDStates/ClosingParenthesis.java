@@ -1,5 +1,6 @@
 package XMLLiteParser.States.DTDStates;
 
+import XMLLiteParser.SchemaTools.DTDParser;
 import XMLLiteParser.States.State;
 
 /**
@@ -9,6 +10,7 @@ public class ClosingParenthesis implements State {
     @Override
     public State transition(char c) {
         if (c == '>'){
+            DTDParser.getInstance().closeConstraint();
             return new ClosingTag();
         }else{
             return new Error();

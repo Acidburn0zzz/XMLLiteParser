@@ -1,5 +1,7 @@
 package XMLLiteParser.States.DTDStates;
 
+import XMLLiteParser.Exception.EmptyNameException;
+import XMLLiteParser.SchemaTools.DTDParser;
 import XMLLiteParser.States.State;
 
 /**
@@ -7,13 +9,16 @@ import XMLLiteParser.States.State;
  */
 public class TagName implements State {
     @Override
-    public State transition(char c) {
+    public State transition(char c) throws EmptyNameException {
         if (String.valueOf(c).matches("[a-zA-Z]") || c == '_' || c == '-') {
+            DTDParser.getInstance().fillBuffer(c);
             return this;
         }
         else if(c == ' '){
+            DTDParser.getInstance().createConstraint();
             return new SecondSpace();
         }else if(c == '(') {
+            DTDParser.getInstance().createConstraint();
             return new OpeningParenthesis();
         }else{
             return new Error();
