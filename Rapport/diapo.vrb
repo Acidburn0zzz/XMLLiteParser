@@ -7,4 +7,7 @@
 <!ELEMENT VALID ()>
       \end{lstlisting}
   \end{block}
+	\begin{block}{Interpréteur QCM}
+Remplir un objet QCM en utilisant l'arbre généré par le parser.
+	\end{block}
  \end{block}
